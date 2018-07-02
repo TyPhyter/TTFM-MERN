@@ -8,11 +8,11 @@ const TestSchema = new Schema({
         required: "Title is required"
     },
     body: {
-        type: Text,
+        type: String,
         trim: true
     },
     score: {
-        type: Interger,
+        type: Number,
         trim: true,
     },
     authorAvatarUrl: {

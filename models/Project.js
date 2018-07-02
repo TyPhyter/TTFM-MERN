@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema({
-    body: Text,
+    body: String,
     hostedUrl: {
         type: String,
         trim: true
@@ -17,7 +17,7 @@ const ProjectSchema = new Schema({
         trim: true
     },
     views: {
-        type: Interger,
+        type: Number,
         defaultValue: 0
     },
     closed: {
