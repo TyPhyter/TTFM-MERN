@@ -161,3 +161,7 @@ pre {
 .collection li h5 {
   height: 30px;
 }
+
+.app-wrapper {
+  min-height: calc(100vh - 200px)
+}
