@@ -9,8 +9,8 @@ class Navbar extends Component {
         <div className="nav-wrapper grey lighten-4">
             <div className="container">
                 <Link to="#" className="brand-logo">
-                    <img id="ttfmLogo" src="img/ttfm-logo-clr.svg" alt="TestThisForMe Logo"/>
-                    <span id="navTitle">TestThisFor.Me</span>
+                    <img id="ttfmLogo" src="img/ttfm-logo-clr.svg" alt="TestThisForMe Logo" width="50"/>
+                    <span className="hide-on-med-and-down" id="navTitle">TestThisFor.Me</span>
                 </Link>
                 
                 <Link to="#" data-target="mobile-demo" className="sidenav-trigger">
