@@ -2,5 +2,6 @@
 
 module.exports = {
     Projects: require("./Project"),
-    Test: require("./Test")
+    Test: require("./Test"),
+    // User: require('./User')
 }
