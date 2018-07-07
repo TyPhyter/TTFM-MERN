@@ -6,7 +6,7 @@ export default class Detail extends Component {
         <div className="dash container">
         <div id="projId" style="display:none;">{{ id }}</div>
         {{#if authorAvatarUrl}}
-        <img style="width:250px" className="circle" src="{{ authorAvatarUrl }}"> 
+        <img style="width:250px" className="circle" src="{{ authorAvatarUrl }}"/> 
         {{/if}} 
         {{#unless authorAvatarUrl}}
         <i className="material-icons circle">person</i>
@@ -19,8 +19,8 @@ export default class Detail extends Component {
         <div className="center-align">
             <button id="testThisBtn" className="btn btn-large">Test This</button>
         </div>
-        <br>
-        <br>
+        <br/>
+        <br/>
 
         <div className="divider"></div>
         <div className="row">
@@ -31,7 +31,7 @@ export default class Detail extends Component {
                     <div className="collapsible-header">
                         <div>
                             {{#if this.dataValues.authorAvatarUrl}}
-                            <img style="width:50px; margin-right:10px" className="circle" src="{{ this.dataValues.authorAvatarUrl }}"> 
+                            <img style="width:50px; margin-right:10px" className="circle" src="{{ this.dataValues.authorAvatarUrl }}"/> 
                             {{/if}} 
                             {{#unless this.dataValues.authorAvatarUrl}}
                             <i className="material-icons circle">person</i>

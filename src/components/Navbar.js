@@ -37,13 +37,13 @@ class Navbar extends Component {
     <ul className="sidenav" id="mobile-demo">
         {/* <!--Mobile Main Nav --> */}
         <li>
-            <Link to="#">Available Projects</Link>
+            <Link to="/all">Available Projects</Link>
         </li>
         <li>
-            <Link to="#">My Projects</Link>
+            <Link to="/dashboard">My Projects</Link>
         </li>
         <li>
-            <Link to="#">My Profile</Link>
+            <Link to="/profile">My Profile</Link>
         </li>
         <li>
             <Link to="#">Login/Sign Up</Link>

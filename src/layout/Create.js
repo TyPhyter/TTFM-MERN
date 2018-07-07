@@ -11,15 +11,15 @@ export default class Create extends Component {
               <form className="col s12">
                   <div className="row">
                       <div className="input-field col s12">
-                          <input placeholder="A brief description of your project" id="project_title" type="text" className="validate">
+                          <input placeholder="A brief description of your project" id="project_title" type="text" className="validate"/>
                           <label for="project_title">Project Title</label>
                       </div>
                       <div className="input-field col s12">
-                          <input placeholder="https://github.com/your_info" id="repoUrl" type="text" className="validate">
+                          <input placeholder="https://github.com/your_info" id="repoUrl" type="text" className="validate"/>
                           <label for="repoUrl">Repo URL:</label>
                       </div>
                       <div className="input-field col s12">
-                          <input placeholder="https://yoursite.com/your_info" id="hostedUrl" type="text" className="validate">
+                          <input placeholder="https://yoursite.com/your_info" id="hostedUrl" type="text" className="validate"/>
                           <label for="hostedUrl">Hosted URL:</label>
                       </div>
                       <div className="input-field col s12">
@@ -33,7 +33,6 @@ export default class Create extends Component {
                   </div>
               </form>
           </div>
-          <!-- Modal Structure -->
           <div id="repoPicker" className="modal modal-fixed-footer">
               <div className="modal-content">
                   <h4>Choose a Repository</h4>
