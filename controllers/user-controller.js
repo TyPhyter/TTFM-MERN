@@ -1,33 +1,43 @@
 const express = require('express');
 const router = express.Router();
-var db = require("../models");
-var bcrypt = require('bcrypt');
+const db = require("../models");
+const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
+
+
 
 
 
 //find user
 router.get('/users/:id?', (req, res) => {
+
     if (req.params.id) {
-        var userID = req.params.id;
+
+        const _id = req.params.id;
+        const o_id = mongoose.Types.ObjectId(id);
         //VALID
-        db.User.findById(userID)
+        db.User.findById(o_id)
             .then((user) => {
                 res.send(user);
             })
             .catch((err) => {
                 console.log('db.User.findById', err);
+                res.status('400').send(err);
             });
+
     } else {
 
         //VALID
         db.User.find({})
             .then((users) => {
+                //TO DO
                 //maybe require admin permissions for this, or just disable it
                 //definitely don't send password hashes in production
                 res.send(users);
             })
             .catch((err) => {
                 console.log('db.User.findAll', err);
+                res.status('400').send(err);
             });
     }
     
@@ -39,7 +49,7 @@ router.post('/users', (req, res) => {
     //bcrypt this before saving it
     let plainPass = req.body.pass;
     let displayName = req.body.displayName;
-    console.log('POST /users', email, plainPass);
+    console.log('POST /users', email);
     if (email && plainPass) {
         //VALID
         db.User.findOne({ email: email })
@@ -53,16 +63,9 @@ router.post('/users', (req, res) => {
                         .then((hash) => {
                             //CHECK VALIDITY
                             // Store hash in your password DB.
-                            db.User.create({ email: email, passwordHash: hash, displayName: displayName })
+                            db.User.create({ email: email, passwordHash: hash, displayName: displayName, logins: [new Date()] })
                                 .then((user) => {
-                                    //mimicking findOrCreate, return away with a 'created' flag in index [1]
-                                    //TO DO: render dashboard
-                                    let date = new Date();
-                                    //initialize the logins 'array' with the account created date
-                                    //THIS WILL NEED TO BE CHANGED
-                                    user.logins = [date.toISOString().slice(0, 19).replace('T', ' ')];
-                                    user.save().then(() => { });
-                                    res.redirect(`/dashboard/${user.id}`);
+                                    res.send(user);
                                 });
                         });
                 }
@@ -89,20 +92,15 @@ router.post('/users/github', (req, res) => {
         .then((user) => {
             //if we match a record, then the id is already registered
             if (user) {
-                res.redirect(`/dashboard/${user.id}`);
+                //TO DO Look up error code for this and send appropriately
+                res.send('That user already exists');
             } else {
                 //CHECK VALIDITY
                 //no user, so create account
                 // Store hash in your password DB.
-                db.User.create({ githubID, githubName, githubAlias, avatarUrl })
+                db.User.create({ githubID, githubName, githubAlias, avatarUrl, logins: [new Date()] })
                     .then((user) => {
-                        //mimicking findOrCreate, return away with a 'created' flag in index [1]
-                        let date = new Date();
-                        //THIS WILL NEED TO BE CHANGED
-                        //initialize the logins 'array' with the account created date
-                        user.logins = [date.toISOString().slice(0, 19).replace('T', ' ')];
-                        user.save().then(() => { });
-                        res.redirect(`/dashboard/${user.id}`);
+                        res.send(user);
                     });
             }
 
@@ -127,20 +125,20 @@ router.post('/users/login', (req, res) => {
                     bcrypt.compare(plainPass, user.passwordHash)
                         .then((authenticated) => {
                             //if we match, send back the user object
-                            //TO DO: use a projection instead, eliminate the password field
-                            //TO DO: redirect to dashboard
-                            //TO DO: add login record to User "array" field for gamification
+                            
                             if (authenticated) {
+                                //record login to array on user doc
                                 let date = new Date();
-                                //get logins array, push new date, set array, save
-                                //THIS WILL NEED TO BE CHANGED
-                                let loginsArray = user.get('logins');
-                                loginsArray.push(date.toISOString().slice(0, 19).replace('T', ' '));
-                                user.logins = loginsArray;
-                                user.save().then(() => { });
-                                res.user = user;
-                                res.redirect(`/dashboard/${user.id}`);
-                                // res.json(user);
+                                user.logins.push(date);
+                                user.save()
+                                    .then((updatedUser)=> {
+                                        //TO DO: use a projection instead, eliminate the password field
+                                        res.send(updatedUser);
+                                    })
+                                    .catch((err) => {
+                                        res.status('400').send(err);
+                                    });
+ 
                             } else {
                                 res.status(403).send('Incorrect password');
                             }
@@ -161,38 +159,6 @@ router.post('/users/login', (req, res) => {
         res.status(403).send('Username and password required');
     }
 
-
-});
-
-router.get('/dashboard/:id', function (req, res) {
-    let userID = req.params.id;
-    if (userID) {
-        //VALID
-        db.User.findOne({ id: userID })
-            .then((user) => {
-                console.log(user);
-                res.render('dashboard', user.dataValues);
-            })
-
-    } else {
-        res.redirect('/');
-    }
-
-});
-
-router.get('/dashboard/github/:id', function (req, res) {
-    let githubID = req.params.id;
-    if (userID) {
-        //VALID
-        db.User.findOne({ githubID: githubID })
-            .then((user) => {
-                console.log(user);
-                res.render('dashboard', user.dataValues);
-            })
-
-    } else {
-        res.redirect('/');
-    }
 
 });
 
