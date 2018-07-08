@@ -6,11 +6,14 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
 const mongoose = require('mongoose');
 const db = require('./models');
-mongoose.connect("mongodb://localhost:27017/ttfm", () => {
-    console.log('Connected to db');
-});
+mongoose.connect("mongodb://localhost:27017/ttfm")
+    .then(() => {
+        console.log('Connected to db');
+    });
 
 // const router = require('./routes/router');
 const userRouter = require('./controllers/user-controller');
@@ -20,6 +23,9 @@ const userRouter = require('./controllers/user-controller');
 app.use('/', userRouter);
 // app.use('/', projectRouter);
 // app.use('/', testRouter);
+
+const gamify = require('./middleware/gamify');
+app.use(gamify({ option1: true }));
 
 app.listen(PORT, ()=> {
     console.log('Listening on', PORT);

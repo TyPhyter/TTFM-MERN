@@ -112,7 +112,7 @@ router.post('/users/github', (req, res) => {
 
 });
 
-router.post('/users/login', (req, res) => {
+router.post('/users/login', (req, res, next) => {
     let email = req.body.email;
     let plainPass = req.body.pass;
     if (email && plainPass) {
@@ -133,7 +133,10 @@ router.post('/users/login', (req, res) => {
                                 user.save()
                                     .then((updatedUser)=> {
                                         //TO DO: use a projection instead, eliminate the password field
-                                        res.send(updatedUser);
+                                        // res.send(updatedUser);
+                                        res.updatedUser = updatedUser;
+                                        console.log(updatedUser);
+                                        next();
                                     })
                                     .catch((err) => {
                                         res.status('400').send(err);
