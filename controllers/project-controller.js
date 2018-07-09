@@ -27,7 +27,7 @@ router.post('/projects', (req, res) => {
 //==================================
 
 //get Projects, all or by project id
-router.get('/projects/:id?', (req, res) => {
+router.get('/projects/:id', (req, res) => {
     if (req.params.id) {
         let id = req.params.id;
         db.Project.findOne({
