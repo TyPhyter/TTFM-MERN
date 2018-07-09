@@ -25,7 +25,7 @@ app.use('/', userRouter);
 // app.use('/', testRouter);
 
 const gamify = require('./middleware/gamify');
-app.use(gamify({ option1: true }));
+app.use(gamify.checkProgress({ option1: true, achievement1 : (user) => user.logins.length > 5 }));
 
 app.listen(PORT, ()=> {
     console.log('Listening on', PORT);

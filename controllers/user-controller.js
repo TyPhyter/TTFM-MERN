@@ -134,7 +134,7 @@ router.post('/users/login', (req, res, next) => {
                                     .then((updatedUser)=> {
                                         //TO DO: use a projection instead, eliminate the password field
                                         // res.send(updatedUser);
-                                        res.updatedUser = updatedUser;
+                                        res.locals.user = updatedUser;
                                         console.log(updatedUser);
                                         next();
                                     })
