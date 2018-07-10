@@ -1,10 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-class Create extends Component {
+ class Create extends Component {
   render() {
     return (
-      <div>
-          <div className="row center-align">
+    <div>
+        <Navbar/>
+        <div className="container app-wrapper">
+        <div className="row center-align">
               <h4>Post a Project</h4>
           </div>
           <div className="row">
@@ -43,7 +47,9 @@ class Create extends Component {
                   <a href="#!" className="modal-close waves-effect waves-green btn-flat">Close</a>
               </div>
           </div>
-      </div>
+        </div>
+        <Footer/>
+    </div>
     );
   }
 }

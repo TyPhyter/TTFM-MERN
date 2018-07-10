@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-class Dashboard extends Component {
+ class Dashboard extends Component {
   render() {
     return (
-        <div className="dash container">
+    <div>
+        <Navbar/>
+        <div className="container dash app-wrapper">
         <h4>My Projects</h4>
         <ul className=" right tabs tabs-fixed-width">
             <li className="tab">
@@ -58,22 +62,9 @@ class Dashboard extends Component {
                 </li>
                 {{/if}} {{/if}} {{/each}}
             </ul>
-            {{!--
-            <div class="row summary">
-                <div id="checks" className="col m2 center-align">
-                    <i className="small material-icons">visibility</i>
-                    <br/>## VIEWS
-                </div>
-                <div id="checks" className="col m2 center-align">
-                    <i class="small material-icons">check</i>
-                    <br/>## CHECKS
-                </div>
-                <div id="question" className="col m8">
-                    <h5>Name of Query/Problem Title Goes Here</h5>
-                </div>
-            </div> --}}
             <div class="divider"></div>
         </div>
+        <Footer/>
     </div>
     );
   }
