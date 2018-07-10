@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 
-export default class Home extends Component {
+ class Home extends Component {
   render() {
     return (
+    <div>
         <div className="row">
             <div className="card col s5 m4">
                 <div className="card-content">
@@ -60,7 +61,7 @@ export default class Home extends Component {
                                         <img id="gitLogo" src="./img/if_mark-github_298822.png"/>
                                         <div className="black-text">Sign In</div>
                                     </a>
-                                    <br>
+                                    <br/>
                                     <div className="center-align">
                                         -or-
                                     </div>
