@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-class All extends Component {
+ class All extends Component {
   render() {
     return (
-    <div className="dash container">
+    <div>
+        <Navbar/>
+        <div className="container dash app-wrapper">
         <h4 className="avail">Open Projects</h4>
         <ul className=" right tabs tabs-fixed-width">
             <li className="tab">
@@ -114,6 +118,9 @@ class All extends Component {
                 </li>
             </ul>
         </div>
+        
+        </div>
+        <Footer/>
     </div>
     );
   }
