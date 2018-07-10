@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 class Detail extends Component {
   render() {
     return (
-        <div className="dash container">
+        
+    <div className="dash container app-wrapper">
         <div id="projId" style="display:none;">{{ id }}</div>
         {{#if authorAvatarUrl}}
         <img style="width:250px" className="circle" src="{{ authorAvatarUrl }}"/> 
