@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class All extends Component {
+class All extends Component {
   render() {
     return (
     <div className="dash container">
@@ -25,7 +25,7 @@ export default class All extends Component {
                 <li className="collection-item avatar">
                     <a href="/projects/{{this.id}}">
                         {{#if this.authorAvatarUrl}}
-                        <img className="circle" src="{{ this.authorAvatarUrl }}">
+                        <img className="circle" src="{{ this.authorAvatarUrl }}"/>
                         {{/if}}
                         {{#unless this.authorAvatarUrl}}
                         <i className="material-icons circle">person</i>
@@ -37,11 +37,12 @@ export default class All extends Component {
                     </a>
                 </li>
                 {{/unless}}{{/if}} {{/each}} 
+            </ul>
         </div>
         <div id="today" className="col s12">
             <ul className="collection">
                 <li className="collection-item avatar">
-                    <img src="./img/profile.jpg" alt="" className="circle">
+                    <img src="./img/profile.jpg" alt="" className="circle"/>
                     <h5>Question Title Goes Here</h5>
                     <a href="#!" className="secondary-content">
                         <i className="material-icons light-green-text accent-3">arrow_forward</i>
@@ -65,7 +66,6 @@ export default class All extends Component {
                         <i className="material-icons light-green-text accent-3">arrow_forward</i>
                     </a>
                 </li>
-                </li>
             </ul>
         </div>
         <div id="month" className="col s12">
@@ -85,7 +85,7 @@ export default class All extends Component {
                     </a>
                 </li>
                 <li className="collection-item avatar">
-                    <img src="./img/profile.jpg" alt="" className="circle">
+                    <img src="./img/profile.jpg" alt="" className="circle"/>
                     <h5>Question Title Goes Here</h5>
                     <a href="#!" className="secondary-content">
                         <i className="material-icons light-green-text accent-3">arrow_forward</i>
@@ -99,7 +99,7 @@ export default class All extends Component {
                     </a>
                 </li>
                 <li className="collection-item avatar">
-                    <img src="./img/profile.jpg" alt="" className="circle">
+                    <img src="./img/profile.jpg" alt="" className="circle"/>
                     <h5>Question Title Goes Here</h5>
                     <a href="#!" className="secondary-content">
                         <i className="material-icons light-green-text accent-3">arrow_forward</i>

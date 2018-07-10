@@ -1,9 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
  class Home extends Component {
   render() {
     return (
     <div>
+        <Navbar/>
         <div className="row">
             <div className="card col s5 m4">
                 <div className="card-content">
@@ -96,6 +99,7 @@ import React, { Component } from 'react'
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default className Review extends Component {
+class Review extends Component {
   render() {
     return (
       <div>
