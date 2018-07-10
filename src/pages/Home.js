@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
     return (
     <div>
         <Navbar/>
+        <div className="container app-wrapper">
         <div className="row">
             <div className="card col s5 m4">
                 <div className="card-content">
@@ -98,6 +99,7 @@ import Footer from "../components/Footer";
                     <img id="instructions" src="./img/LandingPg-Animated.gif"/>
                 </div>
             </div>
+        </div>
         </div>
         <Footer/>
     </div>
