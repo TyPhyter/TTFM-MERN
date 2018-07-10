@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-export default className Review extends Component {
+class Review extends Component {
   render() {
     return (
-      <div>
+      <div className>
+          <Navbar/>
+          <div className="container app-wrapper">
         <h2 id="projectName">Project Title</h2>
         <div className="row">
             <div className="col s12">
@@ -52,6 +56,8 @@ export default className Review extends Component {
                 </div>
             </div>
         </div>
+        </div>
+        <Footer/>
     </div>
     );
   }

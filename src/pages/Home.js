@@ -1,8 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-export default class Home extends Component {
+ class Home extends Component {
   render() {
     return (
+    <div>
+        <Navbar/>
+        <div className="container app-wrapper">
         <div className="row">
             <div className="card col s5 m4">
                 <div className="card-content">
@@ -60,7 +65,7 @@ export default class Home extends Component {
                                         <img id="gitLogo" src="./img/if_mark-github_298822.png"/>
                                         <div className="black-text">Sign In</div>
                                     </a>
-                                    <br>
+                                    <br/>
                                     <div className="center-align">
                                         -or-
                                     </div>
@@ -95,6 +100,8 @@ export default class Home extends Component {
                 </div>
             </div>
         </div>
+        </div>
+        <Footer/>
     </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
   render() {
     return (
         <div className="dash container">
@@ -44,15 +44,15 @@ export default class Dashboard extends Component {
                 {{/unless}}
             </ul>
         </div>
-        <div id="closed" class="col s12">
+        <div id="closed" className="col s12">
             <ul class="collection">
                 {{#each Projects}} {{#if this.dataValues.title}} {{#if this.dataValues.closed }}
-                <li class="collection-item avatar">
+                <li className="collection-item avatar">
                     <a href="/projects/{{this.dataValues.id}}">
-                        <i class="material-icons circle">person</i>
+                        <i className="material-icons circle">person</i>
                         <h5 class="truncate">{{ this.dataValues.title }}</h5>
                         <a href="#!" class="secondary-content">
-                            <i class="material-icons light-green-text accent-3">arrow_forward</i>
+                            <i className="material-icons light-green-text accent-3">arrow_forward</i>
                         </a>
                     </a>
                 </li>
@@ -60,15 +60,15 @@ export default class Dashboard extends Component {
             </ul>
             {{!--
             <div class="row summary">
-                <div id="checks" class="col m2 center-align">
-                    <i class="small material-icons">visibility</i>
+                <div id="checks" className="col m2 center-align">
+                    <i className="small material-icons">visibility</i>
                     <br/>## VIEWS
                 </div>
-                <div id="checks" class="col m2 center-align">
+                <div id="checks" className="col m2 center-align">
                     <i class="small material-icons">check</i>
                     <br/>## CHECKS
                 </div>
-                <div id="question" class="col m8">
+                <div id="question" className="col m8">
                     <h5>Name of Query/Problem Title Goes Here</h5>
                 </div>
             </div> --}}
