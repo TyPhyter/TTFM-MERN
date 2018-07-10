@@ -16,13 +16,6 @@ const testRouter = require("./controllers/test-controller");
 // app.use("/", projectRouter);
 app.use("/", testRouter);
 
-
-
-
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 const mongoose = require('mongoose');
 const db = require('./models');
 
