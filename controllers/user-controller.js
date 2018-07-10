@@ -3,42 +3,65 @@ const router = express.Router();
 const db = require("../models");
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
+//TO DO
+//pull this out into middleware, run it before all of the routes to check tokens
 
+const verifyToken = (token) => {
+    return jwt.verify(token, 'mysecret', (err, decoded) => {
+        if(err) {
+            console.log(err);
+            return false;
+        }
+        console.log(decoded);
+        return true;
+    });
+}
 
-
+router.post('/users/authenticate', (req, res, next) => {
+    const authenticated = verifyToken(req.body.token);
+    console.log(authenticated);
+    res.json({ authenticated });
+});
 
 //find user
-router.get('/users/:id?', (req, res) => {
+router.get('/users/:id?/:token', (req, res) => {
+    const token = req.params.token;
+    const decodedToken = verifyToken(token);
+    if (decodedToken) {
+        console.log(decodedToken);
+        if (req.params.id) {
 
-    if (req.params.id) {
+            const _id = req.params.id;
+            const o_id = mongoose.Types.ObjectId(id);
+            //VALID
+            db.User.findById(o_id)
+                .then((user) => {
+                    res.send(user);
+                })
+                .catch((err) => {
+                    console.log('db.User.findById', err);
+                    res.status('400').send(err);
+                });
 
-        const _id = req.params.id;
-        const o_id = mongoose.Types.ObjectId(id);
-        //VALID
-        db.User.findById(o_id)
-            .then((user) => {
-                res.send(user);
-            })
-            .catch((err) => {
-                console.log('db.User.findById', err);
-                res.status('400').send(err);
-            });
+        } else {
 
+            //VALID
+            db.User.find({})
+                .then((users) => {
+                    //TO DO
+                    //maybe require admin permissions for this, or just disable it
+                    //definitely don't send password hashes in production
+                    res.send(users);
+                })
+                .catch((err) => {
+                    console.log('db.User.findAll', err);
+                    res.status('400').send(err);
+                });
+        }
     } else {
-
-        //VALID
-        db.User.find({})
-            .then((users) => {
-                //TO DO
-                //maybe require admin permissions for this, or just disable it
-                //definitely don't send password hashes in production
-                res.send(users);
-            })
-            .catch((err) => {
-                console.log('db.User.findAll', err);
-                res.status('400').send(err);
-            });
+        res.status(403).send("Authentication error");
     }
     
 });
@@ -115,6 +138,7 @@ router.post('/users/github', (req, res) => {
 router.post('/users/login', (req, res, next) => {
     let email = req.body.email;
     let plainPass = req.body.pass;
+    
     if (email && plainPass) {
         //find user with provided email
         //VALID
@@ -133,8 +157,12 @@ router.post('/users/login', (req, res, next) => {
                                 user.save()
                                     .then((updatedUser)=> {
                                         //TO DO: use a projection instead, eliminate the password field
-                                        // res.send(updatedUser);
                                         res.locals.user = updatedUser;
+                                        res.locals.user.token = jwt.sign({ 
+                                            //1hr from now
+                                            exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                                            user: res.locals.user 
+                                        }, 'mysecret');
                                         console.log(updatedUser);
                                         next();
                                     })

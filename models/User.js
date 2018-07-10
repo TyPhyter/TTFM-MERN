@@ -12,6 +12,10 @@ const UserSchema = new Schema({
         type: String,
         trim: true
     },
+    token: {
+        type: String,
+        trim: true
+    },
     displayName: {
         type: String,
         trim: true,

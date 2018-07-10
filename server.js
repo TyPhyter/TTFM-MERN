@@ -6,8 +6,6 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
 const mongoose = require('mongoose');
 const db = require('./models');
 mongoose.connect("mongodb://localhost:27017/ttfm")
@@ -24,8 +22,9 @@ app.use('/', userRouter);
 // app.use('/', projectRouter);
 // app.use('/', testRouter);
 
-const gamify = require('./middleware/gamify');
-app.use(gamify.checkProgress({ option1: true, achievement1 : (user) => user.logins.length > 5 }));
+const gamify = require('./middleware/gamify/gamify');
+const gamifyOptions = require('./middleware/gamify/gamify-options.js');
+app.use(gamify.checkAchievements(gamifyOptions));
 
 app.listen(PORT, ()=> {
     console.log('Listening on', PORT);
