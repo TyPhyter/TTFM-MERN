@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const PORT = 3001;
-
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
+//body parser needs to be at the top in order to work
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
