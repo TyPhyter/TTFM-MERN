@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Nav from "../components/Navbar";
+import Footer from "../components/Footer";
 
 class Detail extends Component {
   render() {
     return (
-        <div className="dash container">
+    <div>
+        <Nav/>
+    <div className="dash container app-wrapper">
         <div id="projId" style="display:none;">{{ id }}</div>
         {{#if authorAvatarUrl}}
         <img style="width:250px" className="circle" src="{{ authorAvatarUrl }}"/> 
@@ -65,6 +69,8 @@ class Detail extends Component {
             </form>
         </div>
     </div>
+    <Footer/>
+    </div>    
     );
   }
 }
