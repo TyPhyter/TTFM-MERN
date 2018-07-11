@@ -25,7 +25,7 @@ import React, { Component } from 'react';
                           <label for="hostedUrl">Hosted URL:</label>
                       </div>
                       <div className="input-field col s12">
-                          <textarea style="height: 90px" id="bodyText" className="materialize-textarea" placeholder="Tell us how to interact with your project and what you want to know about it"></textarea>
+                          <textarea id="bodyText" className="materialize-textarea" placeholder="Tell us how to interact with your project and what you want to know about it"></textarea>
                           <label for="bodyText">About your project</label>
                       </div>
                       <div className="input-field col s12 center-align">
