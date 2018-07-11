@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { Project } = require('./Project');
 const { Test } = require('./Test');
+const { Achievement } = require('../middleware/gamify/Achievement');
 
 const UserSchema = new Schema({
     email: {
@@ -51,11 +52,10 @@ const UserSchema = new Schema({
     },
     logins: {
         type: [Date]
-    }
-    //TO DO: create badge schema
-    // badges: {
-    //     type: [badge]
-    // },
+    },
+    achievements: {
+        type: [Achievement]
+    },
 
 });
 

@@ -8,10 +8,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const mongoose = require('mongoose');
 const db = require('./models');
-mongoose.connect("mongodb://localhost:27017/ttfm")
+mongoose
+    .connect("mongodb://localhost:27017/ttfm", { useNewUrlParser: true })
     .then(() => {
         console.log('Connected to db');
     });
+
+const jtoken = require('./middleware/jtoken/jtoken');
+app.use(jtoken.middleware());
 
 // const router = require('./routes/router');
 const userRouter = require('./controllers/user-controller');
