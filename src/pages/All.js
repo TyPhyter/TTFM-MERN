@@ -22,22 +22,20 @@ import React, { Component } from 'react';
         </ul>
         <div id="trending" className="col s12">
             <ul className="collection">
-                {{#each this}} {{#if this.title}} {{#unless this.closed }}
+                
                 <li className="collection-item avatar">
                     <a href="/projects/{{this.id}}">
-                        {{#if this.authorAvatarUrl}}
+                      
                         <img className="circle" src="{{ this.authorAvatarUrl }}"/>
-                        {{/if}}
-                        {{#unless this.authorAvatarUrl}}
+                
                         <i className="material-icons circle">person</i>
-                        {{/unless}}
-                        <h5 className="truncate">{{ this.title }}</h5>
+                      
+                        <h5 className="truncate"></h5>
                         <a href="#!" className="secondary-content">
                             <i className="material-icons light-green-text accent-3">arrow_forward</i>
                         </a>
                     </a>
-                </li>
-                {{/unless}}{{/if}} {{/each}} 
+                </li> 
             </ul>
         </div>
         <div id="today" className="col s12">
