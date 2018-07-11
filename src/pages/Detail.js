@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Nav from "../components/Navbar";
-import Footer from "../components/Footer";
 import UserDetail from "../components/UserDetail";
 
 class Detail extends Component {
@@ -12,9 +10,7 @@ class Detail extends Component {
   render() {
     return (
     <div>
-        <Nav/>
         <UserDetail/>
-        <Footer/>
     </div>    
     );
   }

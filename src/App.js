@@ -8,10 +8,13 @@ import Home from "./pages/Home";
 import Review from "./pages/Review";
 
 import "./App.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const App = () => (
    <Router>
     <div>
+    <Navbar/>
       <Switch>
         <Route exact path="/" component={Home} />
         {/* <Route exact path="/all" component={All} />
@@ -20,8 +23,10 @@ const App = () => (
         {/* <Route exact path="/detail" component={Detail} /> */}
         <Route exact path="/review" component={Review} />
       </Switch>
+      <Footer/>
     </div>
   </Router>
+  
 )
 
 export default App;
