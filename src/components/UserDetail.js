@@ -2,6 +2,22 @@ import React, {Component} from "react";
 
 
 export class UserDetail extends Component {
+    // state?
+
+    // methods
+    EachTest(props) {
+       const testName = [1, 2, 3, 4];
+       const test = testName.map((name) =>
+        <li>{testName}</li>
+    );
+        return (
+            <ul>{test}</ul>
+        );
+   } 
+
+
+
+    // JSX
     render (){
         return (
             <div className="dash container app-wrapper">

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+
 
  class Create extends Component {
   render() {
     return (
     <div>
-        <Navbar/>
         <div className="container app-wrapper">
         <div className="row center-align">
               <h4>Post a Project</h4>
@@ -48,7 +46,6 @@ import Footer from "../components/Footer";
               </div>
           </div>
         </div>
-        <Footer/>
     </div>
     );
   }
