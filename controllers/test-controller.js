@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models')
-const app = require('mongoose');
+const mongoose = require('mongoose');
 
 
 
 
 //add Test
 router.post('/tests', (req, res) => {
-
+    
+    console.log('this is from the post route');
+    
     console.log(req.body);
     let test = {
         title: req.body.title,
@@ -33,7 +35,10 @@ router.post('/tests', (req, res) => {
 router.get('/tests/project/:id', (req, res) => {
 
     let id = req.params.id;
-    db.Test.findAll({ where: { ProjectId: id } })
+    const o_id = mongoose.Types.ObjectId(_id);
+    
+    //this 'where' needs to be updated to mongoose syntax -- done
+    db.Test.findById({o_id})
         .then((tests) => {
             res.send(tests);
         });
@@ -44,7 +49,9 @@ router.get('/tests/project/:id', (req, res) => {
 router.get('/tests/user/:id', (req, res) => {
 
     let id = req.params.id;
-    db.Test.find({ where: { UserId: id } })
+
+    //update this line to mongoose syntax -- done
+    db.Test.findById(o_id)
         .then((tests) => {
             res.send(tests);
         });

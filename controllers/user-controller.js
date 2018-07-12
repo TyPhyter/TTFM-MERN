@@ -14,7 +14,7 @@ router.get('/users/:id?/:token', (req, res) => {
         if (req.params.id) {
 
             const _id = req.params.id;
-            const o_id = mongoose.Types.ObjectId(id);
+            const o_id = mongoose.Types.ObjectId(_id);
             //VALID
             db.User.findById(o_id)
                 .then((user) => {
