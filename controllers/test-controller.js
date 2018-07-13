@@ -7,11 +7,12 @@ const mongoose = require('mongoose');
 
 
 //add Test
+// this route is good to go!
 router.post('/tests', (req, res) => {
     
     console.log('this is from the post route');
-    
-    console.log(req.body);
+    //console.log(res);
+    //console.log(req.body);
     let test = {
         title: req.body.title,
         body: req.body.body,
@@ -26,29 +27,36 @@ router.post('/tests', (req, res) => {
 
     db.Test.create(test)
         .then((test) => {
-            //res.redirect(`/projects/${req.body.ProjectId}`);
+            res.send(test);
         });
     // res.render('index', {});
 });
 
 //get Tests by project id
-router.get('/tests/project/:id', (req, res) => {
+//this route is good to go!
+router.get('/tests/projects/:id', (req, res) => {
 
-    let id = req.params.id;
+    const _id = req.params.id;
     const o_id = mongoose.Types.ObjectId(_id);
-    
-    //this 'where' needs to be updated to mongoose syntax -- done
-    db.Test.findById({o_id})
+        
+    db.Test.findById(o_id)
         .then((tests) => {
             res.send(tests);
+            console.log("this is the test res:  " + tests);
+        })
+        .catch((err) => {
+            console.log('db.User.findById' + err);
+            res.status('400').send(err);
         });
-
+   
 });
 
 //get Tests by user id
+
 router.get('/tests/user/:id', (req, res) => {
 
-    let id = req.params.id;
+    const _id = req.params.id;
+    const o_id = mongoose.Types.ObjectId(_id);
 
     //update this line to mongoose syntax -- done
     db.Test.findById(o_id)
