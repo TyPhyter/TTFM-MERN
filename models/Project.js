@@ -32,7 +32,7 @@ const ProjectSchema = new Schema({
 
     author: { type: Schema.Types.ObjectId, ref: 'User'},
 
-    tests: { type: Schema.Types.ObjectId, ref: 'Test' }
+    tests: [{ type: Schema.Types.ObjectId, ref: 'Test' }]
 });
 
 const Project = mongoose.model("Project", ProjectSchema);
