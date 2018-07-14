@@ -1,8 +1,29 @@
 import React, {Component} from "react";
 
 export default class Landing extends Component {
-// method
-   
+    // state
+    state = {
+        email: "",
+        password: "",
+        userName: ""
+
+    };
+
+    // method
+
+    handleImputChange = event => {
+      let value = event.target.value;
+      const name = event.target.name;
+
+        // input state
+        this.setState({
+            [name]: value
+        });
+    }
+    
+
+
+
   signUpSubmit = event => {
     event.preventDefault();
     let redirectUri;
@@ -93,17 +114,32 @@ export default class Landing extends Component {
                                     <form className="col s12">
                                         <div className="row">
                                             <div className="input-field col s12">
-                                                <input id="su_user_name" type="text" className="validate"/>
+                                                <input 
+                                                    value= {this.state.userName}
+                                                    name="su_UserName"
+                                                    onChange={this.handleImputChange}
+                                                    type="text"
+                                                />
                                                 <label for="su_user_name">
                                                     User Name
                                                 </label>
                                             </div>
                                             <div className="input-field col s12">
-                                                    <input id="su_email" type="email" className="validate"/>
-                                                    <label for="su_email">Email</label>
+                                                <input 
+                                                    value={this.state.email} 
+                                                    name="su_email" 
+                                                    type="email" 
+                                                    onChange={this.handleImputChange}
+                                                />
+                                                <label for="su_email">Email</label>
                                             </div>
                                             <div className="input-field col s12">
-                                                <input id="su_password" type="password" className="validate"/>
+                                                <input 
+                                                    value={this.state.password} 
+                                                    name="su_password" 
+                                                    type="text"
+                                                    onChange={this.handleImputChange}
+                                                />
                                                 <label for="su_password">Password</label>
                                             </div>
                                             
@@ -136,11 +172,21 @@ export default class Landing extends Component {
                                     <form className="col s12">
                                         <div className="row">
                                             <div className="input-field col s12">
-                                                <input id="li_user_name" type="text" className="validate"/>
+                                                <input 
+                                                    value={this.state.email} 
+                                                    name="li_email" 
+                                                    type="email" 
+                                                    onChange={this.handleImputChange}
+                                                />
                                                 <label for="user_name">Email</label>
                                             </div>
                                             <div className="input-field col s12">
-                                                <input id="li_password" type="password" className="validate"/>
+                                                <input 
+                                                    value={this.state.password} 
+                                                    name="li_password" 
+                                                    type="text" 
+                                                    onChange={this.handleImputChange}
+                                                />
                                                 <label for="password">
                                                     Password
                                                 </label>
