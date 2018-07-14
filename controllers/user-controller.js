@@ -5,32 +5,12 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
-//TO DO
-//pull this out into middleware, run it before all of the routes to check tokens
-
-const verifyToken = (token) => {
-    return jwt.verify(token, 'mysecret', (err, decoded) => {
-        if(err) {
-            console.log(err);
-            return false;
-        }
-        console.log(decoded);
-        return true;
-    });
-}
-
-router.post('/users/authenticate', (req, res, next) => {
-    const authenticated = verifyToken(req.body.token);
-    console.log(authenticated);
-    res.json({ authenticated });
-});
-
 //find user
 router.get('/users/:id?/:token', (req, res) => {
-    const token = req.params.token;
-    const decodedToken = verifyToken(token);
-    if (decodedToken) {
-        console.log(decodedToken);
+
+    const verified = res.locals.verified;
+    if (verified) {
+        // console.log(decodedToken);
         if (req.params.id) {
 
             const _id = req.params.id;
@@ -63,11 +43,11 @@ router.get('/users/:id?/:token', (req, res) => {
     } else {
         res.status(403).send("Authentication error");
     }
-    
+
 });
 
 //create user
-router.post('/users', (req, res) => {
+router.post('/users', (req, res, next) => {
     let email = req.body.email;
     //bcrypt this before saving it
     let plainPass = req.body.pass;
@@ -84,11 +64,18 @@ router.post('/users', (req, res) => {
                     //no user, so create account
                     bcrypt.hash(plainPass, 10)
                         .then((hash) => {
-                            //CHECK VALIDITY
-                            // Store hash in your password DB.
                             db.User.create({ email: email, passwordHash: hash, displayName: displayName, logins: [new Date()] })
                                 .then((user) => {
-                                    res.send(user);
+                                    
+                                    //TO DO: use a projection instead, eliminate the password field
+                                    res.locals.user = updatedUser;
+                                    res.locals.newToken = jwt.sign({
+                                        //1hr from now
+                                        exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                                        user: res.locals.user
+                                    }, 'mysecret');
+                                    console.log(updatedUser);
+                                    next();
                                 });
                         });
                 }
@@ -99,12 +86,11 @@ router.post('/users', (req, res) => {
                 console.log(err);
             });
 
-        // res.render('index', {});
     }
 });
 
 //create (and/or login) user via github login
-router.post('/users/github', (req, res) => {
+router.post('/users/github', (req, res, next) => {
 
     let githubID = req.body.githubID;
     let githubName = req.body.githubName;
@@ -113,17 +99,47 @@ router.post('/users/github', (req, res) => {
     //VALID
     db.User.findOne({ githubID: githubID })
         .then((user) => {
+            console.log('user found, logging in');
             //if we match a record, then the id is already registered
+            //log in, gen a new token, next()
             if (user) {
-                //TO DO Look up error code for this and send appropriately
-                res.send('That user already exists');
+                let date = new Date();
+                user.logins.push(date);
+                user.save()
+                    .then((updatedUser) => {
+                        //TO DO: use a projection instead, eliminate the password field
+                        res.locals.user = updatedUser;
+                        res.locals.newToken = jwt.sign({
+                            //1hr from now
+                            exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                            user: res.locals.user
+                        }, 'mysecret');
+                        console.log(updatedUser);
+                        next();
+                    })
+                    .catch((err) => {
+                        res.status('400').send(err);
+                    });
             } else {
-                //CHECK VALIDITY
-                //no user, so create account
+                // no user, so create account
                 // Store hash in your password DB.
+                // gen a new token, next()
                 db.User.create({ githubID, githubName, githubAlias, avatarUrl, logins: [new Date()] })
                     .then((user) => {
-                        res.send(user);
+
+                        //TO DO: use a projection instead, eliminate the password field
+                        res.locals.user = updatedUser;
+                        res.locals.newToken = jwt.sign({
+                            //1hr from now
+                            exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                            user: res.locals.user
+                        }, 'mysecret');
+                        console.log(updatedUser);
+                        next();
+
+
+                    }).catch((err) => {
+                        res.status('400').send(err);
                     });
             }
 
@@ -138,7 +154,7 @@ router.post('/users/github', (req, res) => {
 router.post('/users/login', (req, res, next) => {
     let email = req.body.email;
     let plainPass = req.body.pass;
-    
+
     if (email && plainPass) {
         //find user with provided email
         //VALID
@@ -149,19 +165,19 @@ router.post('/users/login', (req, res, next) => {
                     bcrypt.compare(plainPass, user.passwordHash)
                         .then((authenticated) => {
                             //if we match, send back the user object
-                            
+
                             if (authenticated) {
                                 //record login to array on user doc
                                 let date = new Date();
                                 user.logins.push(date);
                                 user.save()
-                                    .then((updatedUser)=> {
+                                    .then((updatedUser) => {
                                         //TO DO: use a projection instead, eliminate the password field
                                         res.locals.user = updatedUser;
-                                        res.locals.user.token = jwt.sign({ 
+                                        res.locals.newToken = jwt.sign({
                                             //1hr from now
                                             exp: Math.floor(Date.now() / 1000) + (60 * 60),
-                                            user: res.locals.user 
+                                            user: res.locals.user
                                         }, 'mysecret');
                                         console.log(updatedUser);
                                         next();
@@ -169,7 +185,7 @@ router.post('/users/login', (req, res, next) => {
                                     .catch((err) => {
                                         res.status('400').send(err);
                                     });
- 
+
                             } else {
                                 res.status(403).send('Incorrect password');
                             }

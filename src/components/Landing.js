@@ -5,7 +5,7 @@ export default class Landing extends Component {
    
   signUpSubmit = event => {
     event.preventDefault();
-    let redirectUri = "";
+    let redirectUri;
     let localUri = 'http://localhost:8080/users/';
     let productionUri = 'http://www.testthisfor.me/users/';
     let su_email = document.querySelector('#su_email').value.trim();
@@ -36,7 +36,7 @@ export default class Landing extends Component {
 
   signInSubmit = event => {
       event.preventDefault();
-      let redirectUri = "";
+      let redirectUri;
       let localUri = 'http://localhost:8080/users/login';
       let productionUri = 'http://www.testthisfor.me/users/login';
       let li_email = document.querySelector('#li_user_name').value.trim();
