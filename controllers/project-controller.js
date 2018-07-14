@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
-const app = require("mongoose");
+const mongoose = require("mongoose");
+
 
 
 //add Project
@@ -11,7 +12,7 @@ router.post('/projects', (req, res) => {
         body: req.body.body,
         repoUrl: req.body.repoUrl,
         hostedUrl: req.body.hostedUrl,
-               UserId: req.body.UserId,
+        UserId: req.body.UserId,
         authorAvatarUrl: req.body.authorAvatarUrl
     }
 
@@ -20,7 +21,7 @@ router.post('/projects', (req, res) => {
         .then((project) => {
             res.send(project);
         });
-   // res.render('index', {});
+    // res.render('index', {});
 });
 
 
@@ -29,18 +30,23 @@ router.post('/projects', (req, res) => {
 //get Projects, all or by project id
 router.get('/projects/:id?', (req, res) => {
     if (req.params.id) {
-        let id = req.params.id;
-        db.Project.findOne({ Userid: id })
-            .populate('author')
+        let _id = req.params.id;
+        const o_id = mongoose.Types.ObjectId(_id);
+
+        db.Project.find({ _id: o_id })
             .then((project) => {
-                console.log(project.dataValues);
-                res.render('projectDetail', project.dataValues);
+                console.log(project);
+                console.log('found');
+                res.send(project);
+               
             });
     } else {
-        db.Project.findAll({ order: [['updatedAt', 'DESC']] })
+        //'order' needs to be changed
+        db.Project.find({})
+            // .sort(1)
             .then((projects) => {
-                console.log(projects);
-                res.render('allProjects', projects);
+                console.log("found all");
+                res.send(projects);
             });
     }
 });
@@ -51,7 +57,9 @@ router.get('/projects/:id?', (req, res) => {
 router.get('/projects/user/:id', (req, res) => {
 
     let id = req.params.id;
-    db.Project.findAll({ where: { UserId: id }, order: [['updatedAt', 'DESC']] })
+    db.Project.findAll({ userId: o_id })
+        
+        .sort(1)
         .then((projects) => {
             res.send(projects);
         });
@@ -63,7 +71,9 @@ router.get('/projects/user/:id', (req, res) => {
 //get page for posting Projects by user id
 router.get('/projects/post/:id', (req, res) => {
     let userid = req.params.id;
-    res.render('projectMaker', { userid });
+    res.render('projectMaker', {
+        userid
+    });
 
 });
 

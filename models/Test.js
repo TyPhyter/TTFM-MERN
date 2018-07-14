@@ -5,7 +5,7 @@ const TestSchema = new Schema({
     title: {
         type: String,
         trim: true,
-        required: "Title is required"
+        // required: "Title is required"
     },
     body: {
         type: String,
