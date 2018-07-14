@@ -6,18 +6,35 @@ const gamify = {
             console.log('gamify');
             let user = res.locals.user;
             // get the array of achievements
-            //TO DO iterate over the array and make all the checks
             let achievements = options.achievements;
-            achievements.forEach((achievement) => {
-                //TO DO figure out notifications
-                    let didAchieve = achievement.check(user);
-                    achievement.complete = didAchieve;
-            });
+            let notifications = [];
+            for (let achievement in achievements) { 
+                    console.log(user);
+                    let didAchieve = achievements[achievement].check(user);
+                    achievements[achievement].complete = didAchieve;
+                    if(didAchieve){
+                        let found = false;
+                        user.achievements.forEach((userAchievement) => {
+                            if(userAchievement.name === achievements[achievement].name){
+                                found = true;
+                            }
+                        });
+                        
+                        if(!found) {
+                            //The achievement did not exist on the user achievement array
+                            //Save it to the user array, add it to the notifications object
+                            user.achievements.push(achievements[achievement]);
+                            notifications.push(achievements[achievement]);
+                            user.save();
+                        } 
+                    }       
+
+            }
             res.send({ 
                 // 'user': user, 
                 // 'gamify': options.option1, 
                 'achievements': achievements, 
-                // 'notifications': notifications,
+                'notifications': notifications,
                 'newToken': res.locals.newToken || null,
                 'verified': res.locals.verified || null,
                 // 'tokenDecoded': res.locals.tokenDecoded || null,

@@ -27,13 +27,11 @@ router.post('/projects', (req, res) => {
 //==================================
 
 //get Projects, all or by project id
-router.get('/projects/:id', (req, res) => {
+router.get('/projects/:id?', (req, res) => {
     if (req.params.id) {
         let id = req.params.id;
-        db.Project.findOne({
-            where: { Userid: id },
-            include: [{ all: true }]
-        })
+        db.Project.findOne({ Userid: id })
+            .populate('author')
             .then((project) => {
                 console.log(project.dataValues);
                 res.render('projectDetail', project.dataValues);
