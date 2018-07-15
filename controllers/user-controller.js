@@ -96,6 +96,7 @@ router.post('/users/github', (req, res, next) => {
     let githubName = req.body.githubName;
     let githubAlias = req.body.githubAlias;
     let avatarUrl = req.body.avatarUrl;
+
     //VALID
     db.User.findOne({ githubID: githubID })
         .then((user) => {
@@ -152,6 +153,7 @@ router.post('/users/github', (req, res, next) => {
 });
 
 router.post('/users/login', (req, res, next) => {
+    console.log('mark');
     let email = req.body.email;
     let plainPass = req.body.pass;
 
@@ -179,8 +181,9 @@ router.post('/users/login', (req, res, next) => {
                                             exp: Math.floor(Date.now() / 1000) + (60 * 60),
                                             user: res.locals.user
                                         }, 'mysecret');
-                                        console.log(updatedUser);
-                                        next();
+                                        console.log('updatedUser', updatedUser);
+                                        res.send(updatedUser);
+                                        // next();
                                     })
                                     .catch((err) => {
                                         res.status('400').send(err);

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3001;
+const PORT = 3002;
 const bodyParser = require("body-parser");
 //body parser needs to be at the top in order to work
 app.use(bodyParser.json());
@@ -14,8 +14,8 @@ mongoose
         console.log('Connected to db');
     });
 
-// const jtoken = require('./middleware/jtoken/jtoken');
-// app.use(jtoken.middleware());
+const jtoken = require('./middleware/jtoken/jtoken');
+app.use(jtoken.middleware());
 
 // const router = require('./routes/router');
 const userRouter = require('./controllers/user-controller');
