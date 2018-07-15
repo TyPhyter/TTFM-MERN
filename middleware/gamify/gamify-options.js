@@ -17,7 +17,7 @@ const options = {
             name: "Ten Logins",
             check: (user) => user.logins.length >= 10,
             message: "You earned a new badge: You Can Checkout Anytime You Like"
-        },
+        }
 
     ]
 

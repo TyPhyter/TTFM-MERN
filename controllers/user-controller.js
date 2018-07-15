@@ -6,15 +6,15 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 //find user
-router.get('/users/:id?/:token', (req, res) => {
+router.get('/users/:id?', (req, res) => {
 
     const verified = res.locals.verified;
-    if (verified) {
+    // if (verified) {
         // console.log(decodedToken);
         if (req.params.id) {
 
             const _id = req.params.id;
-            const o_id = mongoose.Types.ObjectId(id);
+            const o_id = mongoose.Types.ObjectId(_id);
             //VALID
             db.User.findById(o_id)
                 .then((user) => {
@@ -40,9 +40,9 @@ router.get('/users/:id?/:token', (req, res) => {
                     res.status('400').send(err);
                 });
         }
-    } else {
-        res.status(403).send("Authentication error");
-    }
+    // } else {
+    //     res.status(403).send("Authentication error");
+    // }
 
 });
 

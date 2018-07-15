@@ -1,7 +1,7 @@
 //export models
 
 module.exports = {
-    Projects: require('./Project'),
+    Project: require('./Project'),
     Test: require('./Test'),
     User: require('./User')
 }
