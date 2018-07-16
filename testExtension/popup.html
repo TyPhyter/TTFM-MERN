@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css" />
+    <style>
+        body {
+            padding-top: -5px;
+            min-width: 600px;
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        input {
+            width: 80%;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">TestThisFor.Me</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a href="sass.html">Sass</a>
+                </li>
+                <li>
+                    <a href="badges.html">Components</a>
+                </li>
+                <li>
+                    <a href="collapsible.html">JavaScript</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <form onclick="evt => false">
+            <input id="title" type="text" placeholder="Title" />
+            <input id="body" type="text" placeholder="Body" />
+            <input id="repoUrl" type="text" placeholder="repo URL" />
+            <input id="hosedUrl" type="text" placeholder="Hosete URL" />
+            <input id="UserId" type="text" placeholder="User ID" />
+            <!-- <input type="file" /> -->
+        </form>
+        <button id="btn" class="btn">CLICK ME</button>
+        <p id="paragraph">
+            <img src="" style="visibility: hidden;" id="scrnshot" />
+        </p>
+    </div>
+
+    <script src="popup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+</body>
+
+</html>
