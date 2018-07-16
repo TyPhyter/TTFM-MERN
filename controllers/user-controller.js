@@ -8,9 +8,6 @@ const jwt = require('jsonwebtoken');
 //find user
 router.get('/users/:id?', (req, res) => {
 
-    const verified = res.locals.verified;
-    // if (verified) {
-        // console.log(decodedToken);
         if (req.params.id) {
 
             const _id = req.params.id;
@@ -40,10 +37,6 @@ router.get('/users/:id?', (req, res) => {
                     res.status('400').send(err);
                 });
         }
-    // } else {
-    //     res.status(403).send("Authentication error");
-    // }
-
 });
 
 //create user
@@ -182,8 +175,7 @@ router.post('/users/login', (req, res, next) => {
                                             user: res.locals.user
                                         }, 'mysecret');
                                         console.log('updatedUser', updatedUser);
-                                        res.send(updatedUser);
-                                        // next();
+                                        next();
                                     })
                                     .catch((err) => {
                                         res.status('400').send(err);

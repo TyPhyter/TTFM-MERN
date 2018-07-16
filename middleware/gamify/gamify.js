@@ -8,14 +8,14 @@ const gamify = {
             // get the array of achievements
             let achievements = options.achievements;
             let notifications = [];
-            for (let achievement in achievements) { 
+            for (let achievement of achievements) { 
                     console.log(user);
-                    let didAchieve = achievements[achievement].check(user);
-                    achievements[achievement].complete = didAchieve;
+                    let didAchieve = achievement.check(user);
+                    achievement.complete = didAchieve;
                     if(didAchieve){
                         let found = false;
                         user.achievements.forEach((userAchievement) => {
-                            if(userAchievement.name === achievements[achievement].name){
+                            if(userAchievement.name === achievement.name){
                                 found = true;
                             }
                         });
@@ -23,15 +23,15 @@ const gamify = {
                         if(!found) {
                             //The achievement did not exist on the user achievement array
                             //Save it to the user array, add it to the notifications object
-                            user.achievements.push(achievements[achievement]);
-                            notifications.push(achievements[achievement]);
+                            user.achievements.push(achievement);
+                            notifications.push(achievement);
                             user.save();
                         } 
                     }       
 
             }
             res.send({ 
-                // 'user': user, 
+                'user': user, 
                 // 'gamify': options.option1, 
                 'achievements': achievements, 
                 'notifications': notifications,

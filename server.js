@@ -28,7 +28,7 @@ app.use('/', testRouter);
 
 const gamify = require('./middleware/gamify/gamify');
 const gamifyOptions = require('./middleware/gamify/gamify-options.js');
-// app.use(gamify.checkAchievements(gamifyOptions));
+app.use(gamify.checkAchievements(gamifyOptions));
 
 app.listen(PORT, ()=> {
     console.log('Listening on', PORT);

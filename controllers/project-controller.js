@@ -11,8 +11,8 @@ router.post('/projects', (req, res) => {
     let project = {
         title: req.body.title,
         body: req.body.body,
-        repoUrl: req.body.repoUrl,//optional
-        hostedUrl: req.body.hostedUrl,//optional
+        repoUrl: req.body.repoUrl,
+        hostedUrl: req.body.hostedUrl,
         author: req.body.author, //ObjectId
     }
     const _id = req.body.author;
