@@ -40,13 +40,13 @@ class Navbar extends Component {
             <Link to="/all">Available Projects</Link>
         </li>
         <li>
-            <Link to="/dashboard">My Projects</Link>
+            <Link to="/detail">My Projects</Link>
         </li>
         <li>
-            <Link to="/profile">My Profile</Link>
+            <Link to="/dashboard">My Profile</Link>
         </li>
         <li>
-            <Link to="#">Login/Sign Up</Link>
+            <Link to="/">Login/Sign Up</Link>
         </li>
     </ul>
     </div>
