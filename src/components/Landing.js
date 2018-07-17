@@ -169,7 +169,6 @@ export default class Landing extends Component {
                                                             name="userName"
                                                             onChange={this.handleInputChange}
                                                             type="text"
-                                                            placeholder="su_userName"
                                                         />
                                                         <label htmlFor="su_user_name">
                                                             User Name
@@ -181,7 +180,6 @@ export default class Landing extends Component {
                                                             name="email"
                                                             onChange={this.handleInputChange}
                                                             type="text"
-                                                            placeholder="su_email"
                                                         />
                                                         <label htmlFor="su_email">Email</label>
                                                     </div>
@@ -191,7 +189,6 @@ export default class Landing extends Component {
                                                             name="password"
                                                             onChange={this.handleInputChange}
                                                             type="text"
-                                                            placeholder="su_password"
                                                         />
                                                         <label htmlFor="su_password">Password</label>
                                                     </div>
@@ -230,7 +227,6 @@ export default class Landing extends Component {
                                                             name="password"
                                                             onChange={this.handleInputChange}
                                                             type="text"
-                                                            placeholder="si_email"
                                                         />
                                                         <label htmlFor="user_name">Email</label>
                                                     </div>
@@ -240,7 +236,6 @@ export default class Landing extends Component {
                                                              name="password"
                                                              onChange={this.handleInputChange}
                                                              type="text"
-                                                             placeholder="si_password"
                                                         />
                                                         <label htmlFor="password">
                                                             Password
