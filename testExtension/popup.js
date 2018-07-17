@@ -1,18 +1,20 @@
 let button = document.querySelector('#btn');
 //==========
-// const express = require("express");
-// const router = express.Router();
-// const db = require("../models");
-// const mongoose = require("mongoose");
+const title = document.querySelector("#title").val;
+const body = document.querySelector("#body").val;
+const repoURL = document.querySelector("#repoUrl").val;
+const hostedUrl = document.querySelector("#hostedUrl").val;
+const UserId = document.querySelector("#UserId").val;
+//=============
 
 
 
 button.onclick = function (evt) {
     // input.value = "CLICKED";
-    console.log("input.value");
+    // console.log(input.value);
 
     chrome.tabs.captureVisibleTab(function(screenshotUrl) {
-        input.value = 'captureVisibleTab';
+       
         chrome.extension.getBackgroundPage().console.log('foo');
         chrome.extension.getBackgroundPage().console.log(screenshotUrl);
 
@@ -21,31 +23,36 @@ button.onclick = function (evt) {
         screenShotResult.src = screenshotUrl;
         screenShotResult.style.width = '300px';
         screenShotResult.style.visibility = 'visible';
+
     });
+
+    console.log("button has been clicked.");
    //========================================
-    // router.post('/tests', (req, res) => {
-
-    //     console.log('this is from the post route');
-    //     //console.log(res);
-    //     //console.log(req.body);
-    //     let test = {
-    //         title: req.body.title,
-    //         body: req.body.body,
-    //         score: req.body.score,
-    //         authorDisplayName: req.body.authorDisplayName,
-    //         authorGithubName: req.body.authorGithubName,
-    //         authorAvatarUrl: req.body.authorAvatarUrl,
-    //         ProjectId: req.body.ProjectId,
-    //         UserId: req.body.UserId
-    //     }
-
-
-    //     db.Test.create(test)
-    //         .then((test) => {
-    //             res.send(test);
-    //         });
-    //     // res.render('index', {});
-    // });
+    
+  (extensionPost)=>{
+      fetch('localhost:3001/tests',
+          {
+              method: "POST",
+              body: {
+                  title: req.body.title,
+                  body: req.body.body,
+                  score: req.body.score,
+                  authorDisplayName: req.body.authorDisplayName,
+                  authorGithubName: req.body.authorGithubName,
+                  authorAvatarUrl: req.body.authorAvatarUrl,
+                  ProjectId: req.body.ProjectId,
+                  UserId: req.body.UserId
+              }
+              
+      })
+          .then(function (response) {
+              return response.json();
+          })
+          .then(function (myJson) {
+              console.log(myJson);
+          });
+      }
+   
 
     
 
