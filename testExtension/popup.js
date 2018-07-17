@@ -1,10 +1,10 @@
 let button = document.querySelector('#btn');
 //==========
-const title = document.querySelector("#title").val;
-const body = document.querySelector("#body").val;
-const repoURL = document.querySelector("#repoUrl").val;
-const hostedUrl = document.querySelector("#hostedUrl").val;
-const UserId = document.querySelector("#UserId").val;
+const titleString = document.querySelector("#title").val;
+const bodyString = document.querySelector("#body").val;
+//const repoURL = document.querySelector("#repoUrl").val;
+//const hostedUrl = document.querySelector("#hostedUrl").val;
+//const UserId = document.querySelector("#UserId").val;
 //=============
 
 
@@ -29,19 +29,17 @@ button.onclick = function (evt) {
     console.log("button has been clicked.");
    //========================================
     
-  (extensionPost)=>{
-      fetch('localhost:3001/tests',
+  const extensionPost = () => {
+      fetch('http://localhost:3002/tests',
           {
               method: "POST",
               body: {
-                  title: title,
-                  body: body,
-                  repoUrl: repoUrl ,
-                 
-                  authorGithubName: UserId,
-                  authorAvatarUrl: req.body.authorAvatarUrl,
-                  ProjectId: req.body.ProjectId,
-                  UserId: req.body.UserId
+                  
+              "title": "titleString",
+              "body": "bodyString",
+              "author": "5e4tc324dfj", 
+              "project": "5e4tc324dabc" 
+          
               }
               
       })
@@ -51,9 +49,10 @@ button.onclick = function (evt) {
           .then(function (myJson) {
               console.log(myJson);
           });
+      console.log("api fetch");
       }
    
-
+    extensionPost();
     
 
 
