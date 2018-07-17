@@ -31,9 +31,9 @@ import React, { Component } from 'react';
                         <i className="material-icons circle">person</i>
                       
                         <h5 className="truncate"></h5>
-                        <a href="#!" className="secondary-content">
+                        {/* <a href="#!" className="secondary-content">
                             <i className="material-icons light-green-text accent-3">arrow_forward</i>
-                        </a>
+                        </a> */}
                     </a>
                 </li> 
             </ul>

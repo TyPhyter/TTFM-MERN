@@ -1,6 +1,31 @@
 import React, {Component} from "react";
 
 export default class ReviewForm extends Component {
+    // state
+    state = {
+        textarea1: "",
+        
+    }
+
+   
+
+    handleInputChange = event => {
+        const target = event.target;
+        const value = target.type === 'radio' ? target.checked: target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+
+    }
+
+
+
     render () {
         return (
             <div className="container app-wrapper">
@@ -40,7 +65,13 @@ export default class ReviewForm extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="input-field col s12">
-                                        <textarea id="textarea1" className="materialize-textarea"></textarea>
+                                        <textarea 
+                                            id="textarea1" className="materialize-textarea"
+                                            value= {this.state.textarea1}
+                                            name="textarea1"
+                                            onChange={this.handleInputChange}
+                                            type="text">
+                                        </textarea>
                                         <label for="textarea1">Specific Feedback and Comments</label>
                                     </div>
                                 </div>
