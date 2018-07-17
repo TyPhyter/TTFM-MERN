@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 // this route is good to go!
 router.post('/tests', (req, res) => {
     
-    console.log('this is from the post route');
+    console.log(req.body);
     //console.log(res);
     //console.log(req.body);
     let test = {
@@ -30,11 +30,13 @@ router.post('/tests', (req, res) => {
 
             db.User.findById(user_o_id)
                 .then((user) => {
+                    console.log("user",user);
                     user.tests.push(test._id);
                     user.save();
 
                     db.Project.findById(project_o_id)
                         .then((project) => {
+                            console.log("project",project);
                             project.tests.push(test._id);
                             project.save();
                         });

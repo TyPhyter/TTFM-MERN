@@ -57,19 +57,19 @@ router.post('/users', (req, res, next) => {
                     //no user, so create account
                     bcrypt.hash(plainPass, 10)
                         .then((hash) => {
-                            db.User.create({ email: email, passwordHash: hash, displayName: displayName, logins: [new Date()] })
-                                .then((user) => {
-                                    
-                                    //TO DO: use a projection instead, eliminate the password field
-                                    res.locals.user = updatedUser;
-                                    res.locals.newToken = jwt.sign({
-                                        //1hr from now
-                                        exp: Math.floor(Date.now() / 1000) + (60 * 60),
-                                        user: res.locals.user
-                                    }, 'mysecret');
-                                    console.log(updatedUser);
-                                    next();
-                                });
+                            db.User.create({
+                              email: email,
+                              passwordHash: hash,
+                              displayName: displayName,
+                              logins: [new Date()]
+                            }).then(updatedUser => {
+                              //TO DO: use a projection instead, eliminate the password field
+                              res.locals.user = updatedUser;
+                              res.locals.newToken = jwt.sign({ //1hr from now
+                                  exp: Math.floor(Date.now() / 1000) + 60 * 60, user: res.locals.user }, "mysecret");
+                              console.log(updatedUser);
+                              next();
+                            });
                         });
                 }
 
