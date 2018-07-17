@@ -150,7 +150,7 @@ export default class Landing extends Component {
                     </div>
                     <div className="card col s6 m7 offset-m1 offset-s1" id="content">
                         <div className="row">
-                            <img id="instructions" src="./img/LandingPg-Animated.gif" />
+                            <img id="instructions" src="./img/carbon.png" />
                         </div>
                     </div>
                 </div>
