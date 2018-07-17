@@ -54,7 +54,7 @@ export default class UserDetail extends Component {
                             <div className="input-field col s12">
                                 <i className="material-icons prefix">account_circle</i>
                                 <textarea id="textarea1" className="materialize-textarea"></textarea>
-                                <label for="textarea1">Post Your Solution</label>
+                                <label htmlFor="textarea1">Post Your Solution</label>
                             </div>
                         </div>
                     </form>

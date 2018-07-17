@@ -136,7 +136,7 @@ export default class Landing extends Component {
         return (
             <div className="container app-wrapper">
         <div className="row">
-            <div className="card col s5 m4">
+            <div className="card col s12 m5">
                 <div className="card-content">
                     <p>New to TestThisFor.Me? Sign up! It takes only a few seconds to change your coding life!</p>
                 </div>
@@ -164,7 +164,7 @@ export default class Landing extends Component {
                                                     onChange={this.handleInputChange}
                                                     type="text"
                                                 />
-                                                <label for="su_user_name">
+                                                <label htmlFor="su_user_name">
                                                     User Name
                                                 </label>
                                             </div>
@@ -175,7 +175,7 @@ export default class Landing extends Component {
                                                     type="email" 
                                                     onChange={this.handleInputChange}
                                                 />
-                                                <label for="su_email">Email</label>
+                                                <label htmlFor="su_email">Email</label>
                                             </div>
                                             <div className="input-field col s12">
                                                 <input 
@@ -184,7 +184,7 @@ export default class Landing extends Component {
                                                     type="text"
                                                     onChange={this.handleInputChange}
                                                 />
-                                                <label for="su_password">Password</label>
+                                                <label htmlFor="su_password">Password</label>
                                             </div>
                                             
                                         </div>
@@ -222,7 +222,7 @@ export default class Landing extends Component {
                                                     type="email" 
                                                     onChange={this.handleInputChange}
                                                 />
-                                                <label for="user_name">Email</label>
+                                                <label htmlFor="user_name">Email</label>
                                             </div>
                                             <div className="input-field col s12">
                                                 <input 
@@ -231,7 +231,7 @@ export default class Landing extends Component {
                                                     type="text" 
                                                     onChange={this.handleInputChange}
                                                 />
-                                                <label for="password">
+                                                <label htmlFor="password">
                                                     Password
                                                 </label>
                                             </div>
@@ -246,7 +246,7 @@ export default class Landing extends Component {
                     </div>
                 </div>
             </div>
-            <div className="card col s6 m7 offset-m1 offset-s1" id="content">
+            <div className="card col s12 m6 offset-m1 offset-s0" id="content">
                 <div className="row">
                     <img id="instructions" src="./img/carbon.png"/>
                 </div>
