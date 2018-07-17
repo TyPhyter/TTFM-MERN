@@ -1,5 +1,9 @@
 const express = require('express');
 const app = express();
+
+const cors = require('cors');
+app.use(cors());
+
 const PORT = 3002;
 const bodyParser = require("body-parser");
 //body parser needs to be at the top in order to work
