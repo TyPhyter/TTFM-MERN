@@ -41,9 +41,9 @@ export default class Landing extends Component {
         .then((response) => {
             // maybe save token here
             console.log(response);
-            redirectUri = response.url;
+            // redirectUri = response.url;
             // return response.json();
-            window.location.href = redirectUri;
+            // window.location.href = redirectUri;
         })
         .then((json) => {
             console.log(json);
@@ -54,10 +54,10 @@ export default class Landing extends Component {
         event.preventDefault();
         let redirectUri = "";
         let localUri = 'http://localhost:8080/users/login';
-        let productionUri = 'http://www.testthisfor.me/users/login';
+        let productionUri = 'https://ttfm-api.herokuapp.com/';
         let li_email = document.querySelector('#li_user_name').value.trim();
         let li_password = document.querySelector('#li_password').value.trim();
-        fetch(productionUri, {
+        fetch(localUri, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -71,9 +71,9 @@ export default class Landing extends Component {
         .then((response) => {
         //maybe save token here
         console.log(response);
-        redirectUri = response.url;
+        // redirectUri = response.url;
         // return response.json();
-        window.location.href = redirectUri;
+        // window.location.href = redirectUri;
     })
         .then((json) => {
         console.log(json);
