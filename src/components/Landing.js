@@ -60,6 +60,7 @@ export default class Landing extends Component {
 
     render() {
         return (
+            <div>
             <div className="container app-wrapper">
                 <div className="row">
                     <div className="card col s5 m4">
@@ -149,11 +150,17 @@ export default class Landing extends Component {
                     </div>
                     <div className="card col s6 m7 offset-m1 offset-s1" id="content">
                         <div className="row">
-                            <img id="instructions" src="./img/LandingPg-Animated.gif" />
+                            <img id="instructions" src="./img/carbon.png" />
                         </div>
                     </div>
                 </div>
             </div>
-        )
+            <div className="card col s12 m6 offset-m1 offset-s0" id="content">
+                <div className="row">
+                    <img id="instructions" src="./img/carbon.png"/>
+                </div>
+            </div>
+        </div>
+        );
     }
-}
+    }
