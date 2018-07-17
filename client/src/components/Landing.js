@@ -20,65 +20,65 @@ export default class Landing extends Component {
     }
 
     signUpSubmit = event => {
-            event.preventDefault();
-            let redirectUri = "";
-            let localUri = 'http://localhost:8080/users/';
-            let productionUri = 'http://www.testthisfor.me/users/';
-            let su_email = document.querySelector('#su_email').value.trim();
-            let su_password = document.querySelector('#su_password').value.trim();
-            let displayName = document.querySelector('#su_user_name').value.trim();
-            fetch(productionUri, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: su_email,
-                    pass: su_password,
-                    displayName: displayName
-                })
+        event.preventDefault();
+        let redirectUri = "";
+        let localUri = 'http://localhost:8080/users/';
+        let productionUri = 'http://www.testthisfor.me/users/';
+        let su_email = document.querySelector('#su_email').value.trim();
+        let su_password = document.querySelector('#su_password').value.trim();
+        let displayName = document.querySelector('#su_user_name').value.trim();
+        fetch(productionUri, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: su_email,
+                pass: su_password,
+                displayName: displayName
             })
-            .then((response) => {
-                // maybe save token here
-                console.log(response);
-                redirectUri = response.url;
-                // return response.json();
-                window.location.href = redirectUri;
-            })
-            .then((json) => {
-                console.log(json);
-            });
-        };
+        })
+        .then((response) => {
+            // maybe save token here
+            console.log(response);
+            redirectUri = response.url;
+            // return response.json();
+            window.location.href = redirectUri;
+        })
+        .then((json) => {
+            console.log(json);
+        });
+    };
         
-          signInSubmit = event => {
-              event.preventDefault();
-              let redirectUri = "";
-              let localUri = 'http://localhost:8080/users/login';
-              let productionUri = 'http://www.testthisfor.me/users/login';
-              let li_email = document.querySelector('#li_user_name').value.trim();
-              let li_password = document.querySelector('#li_password').value.trim();
-                fetch(productionUri, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: li_email,
-                    pass: li_password
-                }),
-                // redirect: 'follow'
-            })
-                .then((response) => {
-                //maybe save token here
-                console.log(response);
-                redirectUri = response.url;
-                // return response.json();
-                window.location.href = redirectUri;
-            })
-                .then((json) => {
-                console.log(json);
-            });
-            };
+    signInSubmit = event => {
+        event.preventDefault();
+        let redirectUri = "";
+        let localUri = 'http://localhost:8080/users/login';
+        let productionUri = 'http://www.testthisfor.me/users/login';
+        let li_email = document.querySelector('#li_user_name').value.trim();
+        let li_password = document.querySelector('#li_password').value.trim();
+        fetch(productionUri, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: li_email,
+            pass: li_password
+        }),
+        // redirect: 'follow'
+    })
+        .then((response) => {
+        //maybe save token here
+        console.log(response);
+        redirectUri = response.url;
+        // return response.json();
+        window.location.href = redirectUri;
+    })
+        .then((json) => {
+        console.log(json);
+    });
+    };
 
 
     githubClickHandler = (evt) => {
@@ -169,7 +169,6 @@ export default class Landing extends Component {
                                                             name="userName"
                                                             onChange={this.handleInputChange}
                                                             type="text"
-                                                            placeholder="su_userName"
                                                         />
                                                         <label htmlFor="su_user_name">
                                                             User Name
@@ -181,7 +180,6 @@ export default class Landing extends Component {
                                                             name="email"
                                                             onChange={this.handleInputChange}
                                                             type="text"
-                                                            placeholder="su_email"
                                                         />
                                                         <label htmlFor="su_email">Email</label>
                                                     </div>
@@ -191,7 +189,6 @@ export default class Landing extends Component {
                                                             name="password"
                                                             onChange={this.handleInputChange}
                                                             type="text"
-                                                            placeholder="su_password"
                                                         />
                                                         <label htmlFor="su_password">Password</label>
                                                     </div>
@@ -230,7 +227,6 @@ export default class Landing extends Component {
                                                             name="password"
                                                             onChange={this.handleInputChange}
                                                             type="text"
-                                                            placeholder="si_email"
                                                         />
                                                         <label htmlFor="user_name">Email</label>
                                                     </div>
@@ -240,7 +236,6 @@ export default class Landing extends Component {
                                                              name="password"
                                                              onChange={this.handleInputChange}
                                                              type="text"
-                                                             placeholder="si_password"
                                                         />
                                                         <label htmlFor="password">
                                                             Password

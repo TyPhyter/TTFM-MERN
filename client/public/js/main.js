@@ -8,15 +8,15 @@ $(document).ready(function() {
     $(".sidenav").sidenav();
   });
   
-  // var myProjectsButton = document.querySelector('#myProjectsButton');
-  // myProjectsButton.addEventListener('click', function (evt) {
-  //   evt.preventDefault();
-  //   var id = sessionStorage.getItem('ttfmid');
-  //   if(id){
-  //     window.location.href = window.location.origin + `/dashboard/${id}`;
-  //   } else {
-  //     window.location.href = window.location.origin;
-  //   }
+  var myProjectsButton = document.querySelector('#myProjectsButton');
+  myProjectsButton.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    var id = sessionStorage.getItem('ttfmid');
+    if(id){
+      window.location.href = window.location.origin + `/dashboard/${id}`;
+    } else {
+      window.location.href = window.location.origin;
+    }
     
-  // });
+  });
   
