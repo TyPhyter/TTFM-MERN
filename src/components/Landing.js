@@ -1,8 +1,85 @@
 import React, { Component } from "react";
 
 const OAuth = window.OAuth;
+const login = window.login;
 
 export default class Landing extends Component {
+
+    state = {
+        userName: "",
+        email: "",
+        password: ""
+      };
+
+    handleInputChange = event => {
+        let value = event.target.value;
+        const name = event.target.name;
+        this.setState({
+            [name]: value
+          });
+    }
+
+    signUpSubmit = event => {
+            event.preventDefault();
+            let redirectUri = "";
+            let localUri = 'http://localhost:8080/users/';
+            let productionUri = 'http://www.testthisfor.me/users/';
+            let su_email = document.querySelector('#su_email').value.trim();
+            let su_password = document.querySelector('#su_password').value.trim();
+            let displayName = document.querySelector('#su_user_name').value.trim();
+            fetch(productionUri, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: su_email,
+                    pass: su_password,
+                    displayName: displayName
+                })
+            })
+            .then((response) => {
+                // maybe save token here
+                console.log(response);
+                redirectUri = response.url;
+                // return response.json();
+                window.location.href = redirectUri;
+            })
+            .then((json) => {
+                console.log(json);
+            });
+        };
+        
+          signInSubmit = event => {
+              event.preventDefault();
+              let redirectUri = "";
+              let localUri = 'http://localhost:8080/users/login';
+              let productionUri = 'http://www.testthisfor.me/users/login';
+              let li_email = document.querySelector('#li_user_name').value.trim();
+              let li_password = document.querySelector('#li_password').value.trim();
+                fetch(productionUri, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: li_email,
+                    pass: li_password
+                }),
+                // redirect: 'follow'
+            })
+                .then((response) => {
+                //maybe save token here
+                console.log(response);
+                redirectUri = response.url;
+                // return response.json();
+                window.location.href = redirectUri;
+            })
+                .then((json) => {
+                console.log(json);
+            });
+            };
+
 
     githubClickHandler = (evt) => {
         evt.preventDefault();
@@ -58,6 +135,8 @@ export default class Landing extends Component {
 
     }
 
+
+
     render() {
         return (
             <div>
@@ -85,22 +164,40 @@ export default class Landing extends Component {
                                             <form className="col s12">
                                                 <div className="row">
                                                     <div className="input-field col s12">
-                                                        <input id="su_user_name" type="text" className="validate" />
-                                                        <label for="su_user_name">
+                                                        <input 
+                                                            value={this.state.userName}
+                                                            name="userName"
+                                                            onChange={this.handleInputChange}
+                                                            type="text"
+                                                            placeholder="su_userName"
+                                                        />
+                                                        <label htmlFor="su_user_name">
                                                             User Name
                                                 </label>
                                                     </div>
                                                     <div className="input-field col s12">
-                                                        <input id="su_email" type="email" className="validate" />
-                                                        <label for="su_email">Email</label>
+                                                        <input 
+                                                            value={this.state.email}
+                                                            name="email"
+                                                            onChange={this.handleInputChange}
+                                                            type="text"
+                                                            placeholder="su_email"
+                                                        />
+                                                        <label htmlFor="su_email">Email</label>
                                                     </div>
                                                     <div className="input-field col s12">
-                                                        <input id="su_password" type="password" className="validate" />
-                                                        <label for="su_password">Password</label>
+                                                        <input 
+                                                            value={this.state.password}
+                                                            name="password"
+                                                            onChange={this.handleInputChange}
+                                                            type="text"
+                                                            placeholder="su_password"
+                                                        />
+                                                        <label htmlFor="su_password">Password</label>
                                                     </div>
 
                                                 </div>
-                                                <button id="su_submit" className="btn waves-effect waves-light btn-small" type="submit" name="action">
+                                                <button onClick={this.signUpSubmit} className="btn waves-effect waves-light btn-small" type="submit" name="action">
                                                     Submit
                                         </button>
                                             </form>
@@ -128,17 +225,29 @@ export default class Landing extends Component {
                                             <form className="col s12">
                                                 <div className="row">
                                                     <div className="input-field col s12">
-                                                        <input id="li_user_name" type="text" className="validate" />
-                                                        <label for="user_name">Email</label>
+                                                        <input 
+                                                            value={this.state.email}
+                                                            name="password"
+                                                            onChange={this.handleInputChange}
+                                                            type="text"
+                                                            placeholder="si_email"
+                                                        />
+                                                        <label htmlFor="user_name">Email</label>
                                                     </div>
                                                     <div className="input-field col s12">
-                                                        <input id="li_password" type="password" className="validate" />
-                                                        <label for="password">
+                                                        <input 
+                                                             value={this.state.password}
+                                                             name="password"
+                                                             onChange={this.handleInputChange}
+                                                             type="text"
+                                                             placeholder="si_password"
+                                                        />
+                                                        <label htmlFor="password">
                                                             Password
                                                 </label>
                                                     </div>
                                                 </div>
-                                                <button id="li_submit" className="btn waves-effect waves-light btn-small" type="submit" name="action">
+                                                <button id="li_submit" className="btn waves-effect waves-light btn-small" type="submit" name="action" onClick={this.signInSubmit}>
                                                     Submit
                                         </button>
                                             </form>
@@ -148,16 +257,11 @@ export default class Landing extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="card col s6 m7 offset-m1 offset-s1" id="content">
+                    <div className="card col s6 m7 offset-m1 offset-s0" id="content">
                         <div className="row">
                             <img id="instructions" src="./img/carbon.png" />
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className="card col s12 m6 offset-m1 offset-s0" id="content">
-                <div className="row">
-                    <img id="instructions" src="./img/carbon.png"/>
                 </div>
             </div>
         </div>
