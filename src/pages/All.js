@@ -1,6 +1,39 @@
 import React, { Component } from 'react';
 
  class All extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            projects: [],
+        };
+    }
+
+    componentDidMount() {
+        fetch('/projects')
+        .then(res => {
+            return res.json();
+        }).then(data => {
+            // console.log(data);
+            let projects = data.map((project) =>{
+                return(
+                    <li key={project.results} className="collection-item avatar">
+                        <a href="{project.project}">
+                        
+                            <img className="circle" src="{project.author.avatarUrl}"/>
+                        
+                            <h5 className="truncate">{project.title}</h5>
+                            <a href="{project.project}" className="secondary-content">
+                                <i className="material-icons light-green-text accent-3">arrow_forward</i>
+                            </a>
+                        </a>
+                    </li> 
+                    )
+            })
+            this.setState({projects: projects});
+            console.log("state", this.state.projects);
+        })
+    } 
   render() {
     return (
     <div>
@@ -22,20 +55,7 @@ import React, { Component } from 'react';
         </ul>
         <div id="trending" className="col s12">
             <ul className="collection">
-                
-                <li className="collection-item avatar">
-                    <a href="/projects/{{this.id}}">
-                      
-                        <img className="circle" src="{{ this.authorAvatarUrl }}"/>
-                
-                        <i className="material-icons circle">person</i>
-                      
-                        <h5 className="truncate"></h5>
-                        {/* <a href="#!" className="secondary-content">
-                            <i className="material-icons light-green-text accent-3">arrow_forward</i>
-                        </a> */}
-                    </a>
-                </li> 
+                {this.state.projects}
             </ul>
         </div>
         <div id="today" className="col s12">
