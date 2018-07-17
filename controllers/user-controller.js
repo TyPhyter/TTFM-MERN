@@ -58,7 +58,7 @@ router.post('/users', (req, res, next) => {
                     bcrypt.hash(plainPass, 10)
                         .then((hash) => {
                             db.User.create({ email: email, passwordHash: hash, displayName: displayName, logins: [new Date()] })
-                                .then((user) => {
+                                .then((updatedUser) => {
                                     
                                     //TO DO: use a projection instead, eliminate the password field
                                     res.locals.user = updatedUser;
