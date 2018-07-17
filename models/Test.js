@@ -31,14 +31,18 @@ const TestSchema = new Schema({
         type: Boolean,
         defaultValue: false
     },
-    rejectted: {
+    rejected: {
         type: Boolean,
         defaultValue: false
     },
     flagged: {
         type: Boolean,
         defaultValue: false
-    }
+    },
+
+    author: { type: Schema.Types.ObjectId, ref: 'User'},
+
+    project: { type: Schema.Types.ObjectId, ref: 'Project'}
 });
 
 //creates new model with our schema using the mongoose model method.

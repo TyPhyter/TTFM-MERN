@@ -44,19 +44,21 @@ const UserSchema = new Schema({
         default: 0
     },
 
-    projects: {
-        type: [Project]
-    },
-    tests: {
-        type: [Test]
-    },
+    projects: [{ type:Schema.Types.ObjectId, ref: 'Project' }],
+
+    tests: [{ type:Schema.Types.ObjectId, ref: 'Test' }],
+
     logins: {
         type: [Date]
     },
+
     achievements: {
         type: [Achievement]
-    },
-
+    }
+    
+    // tests: {
+    //     type: [Test]
+    // },
 });
 
 const User = mongoose.model("User", UserSchema);

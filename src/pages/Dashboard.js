@@ -27,13 +27,13 @@ import React, { Component } from 'react';
                             </a>
                         </a>
                     </li>
-                    <div style="text-align:center; margin-top:50px">
-                        <a style="margin-top:25px" className="btn btn-large" href="/projects/post/{{ id }}">Post a Project</a>
+                    <div >
+                        <a  className="btn btn-large" href="/projects/post/{{ id }}">Post a Project</a>
                     </div>
                 
-                    <div style="text-align:center; margin-top:50px">
+                    <div>
                         <div>Looks like you haven't posted any projects yet!</div>
-                        <a style="margin-top:25px" className="btn btn-large" href="/projects/post/{{ id }}">Let's Fix That</a>
+                        <a className="btn btn-large" href="/projects/post/{{ id }}">Let's Fix That</a>
                     </div>
                 </ul>
             </div>

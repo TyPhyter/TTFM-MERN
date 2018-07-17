@@ -28,7 +28,11 @@ const ProjectSchema = new Schema({
         type: Boolean,
         defaultValue: false
     },
-    authorAvatarUrl: String
+    authorAvatarUrl: String,
+
+    author: { type: Schema.Types.ObjectId, ref: 'User'},
+
+    tests: [{ type: Schema.Types.ObjectId, ref: 'Test' }]
 });
 
 const Project = mongoose.model("Project", ProjectSchema);
