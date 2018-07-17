@@ -34,11 +34,11 @@ button.onclick = function (evt) {
           {
               method: "POST",
               body: {
-                  title: req.body.title,
-                  body: req.body.body,
-                  score: req.body.score,
-                  authorDisplayName: req.body.authorDisplayName,
-                  authorGithubName: req.body.authorGithubName,
+                  title: title,
+                  body: body,
+                  repoUrl: repoUrl ,
+                 
+                  authorGithubName: UserId,
                   authorAvatarUrl: req.body.authorAvatarUrl,
                   ProjectId: req.body.ProjectId,
                   UserId: req.body.UserId
