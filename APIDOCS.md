@@ -22,7 +22,8 @@ A brief rundown of the routes in our API
 ```javascript
     {
         "email" : "emailas@string.com"
-        "pass" : "passString"
+        "pass" : "passString",
+        "token" : "alskdjfljsddfkl.asdlkjalksdfj.asldfhlsdf"
     }
     // returns the user object,
 ```
@@ -81,7 +82,7 @@ A brief rundown of the routes in our API
         "title" : "titleString",
         "body" : "bodyString",
         "author" : "5e4tc324dfj" //who the test belongs to
-        "ProjectId" : "5e4tc324dabc" //the project the test is for
+        "project" : "5e4tc324dabc" //the project the test is for
     }
     //returns the test object
 ```
@@ -91,10 +92,10 @@ A brief rundown of the routes in our API
   * '/tests/5e4tc324dfj' returns test with id "5e4tc324dfj"
 
 * GET '/tests/project/:id'
-  * '/tests/project/"5e4tc324dfj"' returns all tests associated with PROJECT with id "5e4tc324dfj"
+  * '/tests/project/5e4tc324dfj' returns all tests associated with PROJECT with id "5e4tc324dfj"
 
 * GET '/tests/user/:id'
-  * '/tests/user/"5e4tc324dfj"' returns all tests associated with USER with id "5e4tc324dfj"
+  * '/tests/user/5e4tc324dfj' returns all tests associated with USER with id "5e4tc324dfj"
 
 # Some Notes
 

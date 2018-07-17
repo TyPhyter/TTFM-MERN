@@ -27,7 +27,7 @@ class Navbar extends Component {
                         <Link to="/dashboard">My Profile</Link>
                     </li>
                     <li>
-                        <Link to="/">Login/Sign Up</Link>
+                        <Link to="#">Login/Sign Up</Link>
                     </li>
                 </ul>
             </div>

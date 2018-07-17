@@ -22,13 +22,14 @@ const jtoken = {
 
             const token = req.body.token || req.query.token;
             const result = this.verifyToken(token);
+            console.log(result)
 
             res.locals.token = token;
             result.verified ? res.locals.tokenDecoded = result : res.locals.tokenError = result;
             res.locals.verified = !!result.verified;
+            res.locals.tokenDecoded ? res.locals.user = res.locals.tokenDecoded : null;
 
-            next()
-
+            next();
         }
     }
 }
