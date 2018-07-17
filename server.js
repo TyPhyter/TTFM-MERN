@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 
-const PORT = 3002;
+const PORT = process.env.PORT || 3002;
 const bodyParser = require("body-parser");
 //body parser needs to be at the top in order to work
 app.use(bodyParser.json());
