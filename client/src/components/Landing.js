@@ -111,18 +111,21 @@ export default class Landing extends Component {
                         })
                         .then((json) => {
 
-                            console.log(json);
-                            context.updateUser(json.user);
+                            setTimeout(() => {
+                                console.log(json);
+                                context.updateUser(json.user);
 
-                            if(json.notifications) {
-                                context.setModalContent({
-                                    title: json.notifications[0].title,
-                                    message: json.notifications[0].message
-                                });
-                                context.toggleModal();
-                            }
-                            
-                            context.logIn();
+                                if (json.notifications && json.notifications.length && json.notifications.length > 0) {
+                                    context.setModalContent({
+                                        name: json.notifications[0].name,
+                                        message: json.notifications[0].message
+                                    });
+                                    context.toggleModal();
+                                }
+
+                                context.logIn();
+                            }, 2000);
+
                         });
                 });
             console.log(githubToken);
@@ -137,132 +140,132 @@ export default class Landing extends Component {
         return (
             <AppContext.Consumer>
                 {context => (
-                    
-                        <div>
-                            <div className="container app-wrapper">
-                                <div className="row">
-                                    <div className="card col s5 m4">
-                                        <div className="card-content">
-                                            <p>New to TestThisFor.Me? Sign up! It takes only a few seconds to change your coding life!</p>
-                                        </div>
-                                        <div className="card-tabs">
-                                            <ul className="tabs tabs-fixed-width">
-                                                <li className="tab">
-                                                    <a href="#test5">Sign In</a>
-                                                </li>
-                                                <li className="tab">
-                                                    <a href="#test4">Sign Up</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div className="card-content grey lighten-4">
-                                            <div id="test4">
-                                                <div className="row">
-                                                    <div className="card col s12 m12">
-                                                        <div className="row">
-                                                            <form className="col s12">
-                                                                <div className="row">
-                                                                    <div className="input-field col s12">
-                                                                        <input
-                                                                            value={this.state.userName}
-                                                                            name="userName"
-                                                                            onChange={this.handleInputChange}
-                                                                            type="text"
-                                                                        />
-                                                                        <label htmlFor="su_user_name">
-                                                                            User Name
-                                                </label>
-                                                                    </div>
-                                                                    <div className="input-field col s12">
-                                                                        <input
-                                                                            value={this.state.email}
-                                                                            name="email"
-                                                                            onChange={this.handleInputChange}
-                                                                            type="text"
-                                                                        />
-                                                                        <label htmlFor="su_email">Email</label>
-                                                                    </div>
-                                                                    <div className="input-field col s12">
-                                                                        <input
-                                                                            value={this.state.password}
-                                                                            name="password"
-                                                                            onChange={this.handleInputChange}
-                                                                            type="text"
-                                                                        />
-                                                                        <label htmlFor="su_password">Password</label>
-                                                                    </div>
 
-                                                                </div>
-                                                                <button onClick={this.signUpSubmit} className="btn waves-effect waves-light btn-small" type="submit" name="action">
-                                                                    Submit
-                                        </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="test5">
-                                                <div className="row">
-                                                    <div className="card col s12 m12">
-                                                        <div className="row">
-                                                            <h3>Sign in with either your GitHub account or username!</h3>
-                                                        </div>
-                                                        <div className="row">
-                                                            <a 
-                                                                href="" 
-                                                                className="center-align" 
-                                                                onClick={(e) => {this.githubClickHandler(e, context)}}
-                                                            >
-                                                                <img id="gitLogo" src="./img/if_mark-github_298822.png" />
-                                                                <div className="black-text">Sign In</div>
-                                                            </a>
-                                                            <br />
-                                                            <div className="center-align">
-                                                                -or-
+                    <div>
+                        <div className="container app-wrapper">
+                            <div className="row">
+                                <div className="card col s5 m4">
+                                    <div className="card-content">
+                                        <p>New to TestThisFor.Me? Sign up! It takes only a few seconds to change your coding life!</p>
                                     </div>
-                                                        </div>
-                                                        <div className="row">
-                                                            <form className="col s12">
-                                                                <div className="row">
-                                                                    <div className="input-field col s12">
-                                                                        <input
-                                                                            value={this.state.email}
-                                                                            name="password"
-                                                                            onChange={this.handleInputChange}
-                                                                            type="text"
-                                                                        />
-                                                                        <label htmlFor="user_name">Email</label>
-                                                                    </div>
-                                                                    <div className="input-field col s12">
-                                                                        <input
-                                                                            value={this.state.password}
-                                                                            name="password"
-                                                                            onChange={this.handleInputChange}
-                                                                            type="text"
-                                                                        />
-                                                                        <label htmlFor="password">
-                                                                            Password
+                                    <div className="card-tabs">
+                                        <ul className="tabs tabs-fixed-width">
+                                            <li className="tab">
+                                                <a href="#test5">Sign In</a>
+                                            </li>
+                                            <li className="tab">
+                                                <a href="#test4">Sign Up</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="card-content grey lighten-4">
+                                        <div id="test4">
+                                            <div className="row">
+                                                <div className="card col s12 m12">
+                                                    <div className="row">
+                                                        <form className="col s12">
+                                                            <div className="row">
+                                                                <div className="input-field col s12">
+                                                                    <input
+                                                                        value={this.state.userName}
+                                                                        name="userName"
+                                                                        onChange={this.handleInputChange}
+                                                                        type="text"
+                                                                    />
+                                                                    <label htmlFor="su_user_name">
+                                                                        User Name
                                                 </label>
-                                                                    </div>
                                                                 </div>
-                                                                <button id="li_submit" className="btn waves-effect waves-light btn-small" type="submit" name="action" onClick={this.signInSubmit}>
-                                                                    Submit
+                                                                <div className="input-field col s12">
+                                                                    <input
+                                                                        value={this.state.email}
+                                                                        name="email"
+                                                                        onChange={this.handleInputChange}
+                                                                        type="text"
+                                                                    />
+                                                                    <label htmlFor="su_email">Email</label>
+                                                                </div>
+                                                                <div className="input-field col s12">
+                                                                    <input
+                                                                        value={this.state.password}
+                                                                        name="password"
+                                                                        onChange={this.handleInputChange}
+                                                                        type="text"
+                                                                    />
+                                                                    <label htmlFor="su_password">Password</label>
+                                                                </div>
+
+                                                            </div>
+                                                            <button onClick={this.signUpSubmit} className="btn waves-effect waves-light btn-small" type="submit" name="action">
+                                                                Submit
                                         </button>
-                                                            </form>
-                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div id="test5">
+                                            <div className="row">
+                                                <div className="card col s12 m12">
+                                                    <div className="row">
+                                                        <h3>Sign in with either your GitHub account or username!</h3>
+                                                    </div>
+                                                    <div className="row">
+                                                        <a
+                                                            href=""
+                                                            className="center-align"
+                                                            onClick={(e) => { this.githubClickHandler(e, context) }}
+                                                        >
+                                                            <img id="gitLogo" src="./img/if_mark-github_298822.png" />
+                                                            <div className="black-text">Sign In</div>
+                                                        </a>
+                                                        <br />
+                                                        <div className="center-align">
+                                                            -or-
                                     </div>
-                                    <div className="card col s6 m7 offset-m1 offset-s0" id="content">
-                                        <div className="row">
-                                            <img id="instructions" src="./img/carbon.png" />
+                                                    </div>
+                                                    <div className="row">
+                                                        <form className="col s12">
+                                                            <div className="row">
+                                                                <div className="input-field col s12">
+                                                                    <input
+                                                                        value={this.state.email}
+                                                                        name="password"
+                                                                        onChange={this.handleInputChange}
+                                                                        type="text"
+                                                                    />
+                                                                    <label htmlFor="user_name">Email</label>
+                                                                </div>
+                                                                <div className="input-field col s12">
+                                                                    <input
+                                                                        value={this.state.password}
+                                                                        name="password"
+                                                                        onChange={this.handleInputChange}
+                                                                        type="text"
+                                                                    />
+                                                                    <label htmlFor="password">
+                                                                        Password
+                                                </label>
+                                                                </div>
+                                                            </div>
+                                                            <button id="li_submit" className="btn waves-effect waves-light btn-small" type="submit" name="action" onClick={this.signInSubmit}>
+                                                                Submit
+                                        </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div className="card col s6 m7 offset-m1 offset-s0" id="content">
+                                    <div className="row">
+                                        <img id="instructions" src="./img/carbon.png" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>)}
+                        </div>
+                    </div>)}
             </AppContext.Consumer>
 
         );

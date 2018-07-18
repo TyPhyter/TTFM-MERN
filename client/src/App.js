@@ -22,7 +22,10 @@ class App extends Component {
         loggedIn: false,
         showModal: false,
         currentProject: {},
-        modalContent: {},
+        modalContent: {
+            title: '',
+            message: ''
+        },
         logIn: () => {
             this.setState({ loggedIn: true });
         },

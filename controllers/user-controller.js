@@ -133,7 +133,7 @@ router.post('/users/github', (req, res, next) => {
                 // gen a new token, next()
                 db.User.create({ githubID, githubName, githubAlias, avatarUrl, logins: [new Date()] })
                     .then((user) => {
-
+                        console.log(user);
                         //TO DO: use a projection instead, eliminate the password field
                         res.locals.user = user.populate('projects').populate('tests');
                         res.locals.newToken = jwt.sign({
