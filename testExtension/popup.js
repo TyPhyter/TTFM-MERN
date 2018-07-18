@@ -1,10 +1,9 @@
 let button = document.querySelector('#btn');
 //==========
-const title = document.querySelector("#title").val;
-const body = document.querySelector("#body").val;
-const repoURL = document.querySelector("#repoUrl").val;
-const hostedUrl = document.querySelector("#hostedUrl").val;
-const UserId = document.querySelector("#UserId").val;
+
+//const repoURL = document.querySelector("#repoUrl").val;
+//const hostedUrl = document.querySelector("#hostedUrl").val;
+//const UserId = document.querySelector("#UserId").val;
 //=============
 
 
@@ -12,6 +11,9 @@ const UserId = document.querySelector("#UserId").val;
 button.onclick = function (evt) {
     // input.value = "CLICKED";
     // console.log(input.value);
+    const titleString = document.querySelector("#title").value;
+    const bodyString = document.querySelector("#body").value;
+    console.log(titleString, bodyString);
 
     chrome.tabs.captureVisibleTab(function(screenshotUrl) {
        
@@ -29,31 +31,30 @@ button.onclick = function (evt) {
     console.log("button has been clicked.");
    //========================================
     
-  (extensionPost)=>{
-      fetch('localhost:3001/tests',
-          {
-              method: "POST",
-              body: {
-                  title: req.body.title,
-                  body: req.body.body,
-                  score: req.body.score,
-                  authorDisplayName: req.body.authorDisplayName,
-                  authorGithubName: req.body.authorGithubName,
-                  authorAvatarUrl: req.body.authorAvatarUrl,
-                  ProjectId: req.body.ProjectId,
-                  UserId: req.body.UserId
-              }
-              
+  const extensionPost = () => {
+      fetch("http://localhost:3002/tests", {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        mode: "cors",
+        method: "POST",
+          body: JSON.stringify({
+          title: titleString,
+          body: bodyString,
+          author: "5b4d48485eb48e152418ad5b",
+          project: "5b46b0d74328af3ba0641e64"
+        })
       })
-          .then(function (response) {
-              return response.json();
-          })
-          .then(function (myJson) {
-              console.log(myJson);
-          });
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(myJson) {
+          console.log(myJson);
+        });
+      console.log("api fetch");
       }
    
-
+    extensionPost();
     
 
 
