@@ -2,6 +2,21 @@ import React, { Component } from 'react';
 
 
  class Create extends Component {
+     state ={
+        title: "",
+        repoUrl: "",
+        hostedUrl: "",
+        bodyText: ""
+     }
+
+     handleInputChange = event => {
+        let value = event.target.value;
+        const name = event.target.name;
+        this.setState({
+            [name]: value
+        });
+    }
+
   render() {
     return (
     <div>
@@ -13,20 +28,44 @@ import React, { Component } from 'react';
               <form className="col s12">
                   <div className="row">
                       <div className="input-field col s12">
-                          <input placeholder="A brief description of your project" id="project_title" type="text" className="validate"/>
-                          <label for="project_title">Project Title</label>
+                          <input 
+                            value={this.state.title}
+                            name="title"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="A brief description of your project"   
+                            />
+                          <label  htmlFor="project_title">Project Title</label>
                       </div>
                       <div className="input-field col s12">
-                          <input placeholder="https://github.com/your_info" id="repoUrl" type="text" className="validate"/>
-                          <label for="repoUrl">Repo URL:</label>
+                          <input 
+                            value={this.state.repoUrl}
+                            name="repoUrl"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="https://github.com/your_info"
+                          />
+                          <label  htmlFor="repoUrl">Repo URL:</label>
                       </div>
                       <div className="input-field col s12">
-                          <input placeholder="https://yoursite.com/your_info" id="hostedUrl" type="text" className="validate"/>
-                          <label for="hostedUrl">Hosted URL:</label>
+                          <input 
+                            value={this.state.hostedUrl}
+                            name="hostedUrl"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="https://yoursite.com/your_info" 
+                          />
+                          <label  htmlFor="hostedUrl">Hosted URL:</label>
                       </div>
                       <div className="input-field col s12">
-                          <textarea id="bodyText" className="materialize-textarea" placeholder="Tell us how to interact with your project and what you want to know about it"></textarea>
-                          <label for="bodyText">About your project</label>
+                          <textarea 
+                            value={this.state.bodyText}
+                            name="bodyText"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="Tell us how to interact with your project and what you want to know about it">
+                          </textarea>
+                          <label  htmlFor="bodyText">About your project</label>
                       </div>
                       <div className="input-field col s12 center-align">
                           <button className="btn btn-large" id="post">POST</button>
