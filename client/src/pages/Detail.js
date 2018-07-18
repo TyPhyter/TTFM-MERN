@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserDetail from "../components/UserDetail";
+import ProjectDetail from "../components/ProjectDetail";
 
 class Detail extends Component {
     // methods
@@ -10,7 +10,7 @@ class Detail extends Component {
   render() {
     return (
     <div>
-        <UserDetail/>
+        <ProjectDetail/>
     </div>    
     );
   }

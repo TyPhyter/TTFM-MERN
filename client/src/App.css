@@ -208,3 +208,18 @@ input[type=search]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
   color: #1d1e50;
 }
+
+#modal1 {
+  display: block;
+  height: 40vh;
+  top: 20vh;
+  width: 40vw;
+}
+
+@media screen and (max-width: 768px) {
+  #modal1 {
+    height: 40vh;
+    top: 20vh;
+    width: 90vw;
+  }
+}

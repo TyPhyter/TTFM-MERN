@@ -6,7 +6,7 @@ class Modal extends Component {
     return (
         <div>
             <div id="modal1" className="modal">
-                <div class="modal-content">
+                <div className="modal-content">
                     <h4 className="center-align">Welcome Back</h4>
                     <p className="center-align">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero aspernatur fugiat corporis accusamus cumque illum ea odio provident distinctio perspiciatis ab, saepe facilis vero quia amet deserunt, quam praesentium earum.</p>
                 </div>

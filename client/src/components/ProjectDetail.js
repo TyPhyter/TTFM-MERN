@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 
-export default class UserDetail extends Component {
+export default class ProjectDetail extends Component {
     // state?
 
     // methods

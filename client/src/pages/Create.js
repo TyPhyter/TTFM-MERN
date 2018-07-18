@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import AppContext from '../AppContext';
+import { withRouter } from 'react-router-dom';
 
 class Create extends Component {
 
+    redirect = (path) => {
+        console.log('redirect', path)
+        this.props.history.push('/create');
+    }
 
     render() {
         return (
@@ -57,4 +62,4 @@ class Create extends Component {
     }
 }
 
-export default Create;
+export default withRouter(Create);

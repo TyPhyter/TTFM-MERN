@@ -10,6 +10,7 @@ import Review from "./pages/Review";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Modal from "./components/Modal";
 
 import AppContext from "./AppContext";
 
@@ -19,6 +20,7 @@ class App extends Component {
         user: {},
         token: '',
         loggedIn: false,
+        showModal: false,
         logIn: () => {
             this.setState({ loggedIn: true });
         },
@@ -27,6 +29,9 @@ class App extends Component {
         },
         updateUser: (user) => {
             this.setState({ user: user });
+        },
+        toggleModal: () => {
+            this.setState({ showModal: true });
         }
     }
 
@@ -49,6 +54,12 @@ class App extends Component {
                             <Route exact path="/review" component={Review} />
                         </Switch>
                         <Footer />
+                        {
+                            // true && expression = expression
+                            this.state.showModal &&
+                            <Modal />
+                        }
+                        
                     </div>
                 </Router>
             </AppContext.Provider>
