@@ -41,12 +41,14 @@ router.get('/projects/:id?', (req, res) => {
 
         db.Project.find({ _id: o_id })
             .populate('author')
-            .populate('tests')
+            .populate({
+                path: 'tests',
+                populate: { path: 'author' }
+            })
             .then((project) => {
                 console.log(project);
                 console.log('found');
                 res.send(project);
-               
             });
     } else {
        

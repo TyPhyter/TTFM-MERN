@@ -64,9 +64,10 @@ class ProjectDetail extends Component {
                                             <h5>Completed Tests</h5>
                                             <ul className="collapsible">
                                                 {
-                                                    project.tests.map((test) => {
+                                                    project.tests.map((test, index) => {
+                                                        console.log(test)
                                                         return (
-                                                            <li className="detailTest">
+                                                            <li className="detailTest" key={index}>
                                                                 <div className="collapsible-header">
                                                                     <div>
                                                                         <img className="circle" src={test.author.avatarUrl} />
