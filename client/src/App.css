@@ -220,6 +220,17 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
   width: 40vw;
 }
 
+.detailTest {
+  position: relative;
+}
+
+.detailTest i {
+  float: right;
+  position: absolute;
+  right: 10px;
+  top: 30px;
+}
+
 @media screen and (max-width: 768px) {
   #modal1 {
     height: 40vh;

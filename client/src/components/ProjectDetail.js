@@ -7,7 +7,8 @@ class ProjectDetail extends Component {
     // state?
 
     // methods
-    redirect = (path) => {
+    redirect = (path, evt) => {
+        if(evt) evt.preventDefault;
         console.log('redirect', path)
         this.props.history.push(path);
     }
@@ -19,29 +20,42 @@ class ProjectDetail extends Component {
             <AppContext.Consumer>
                 {context => {
 
+                    const { currentProject:project } = context;
                     return (
 
                         <div className="dash container app-wrapper">
                             {
-                                context.currentProject.author ?
+                                project.author ?
 
                                     <div>
                                         {
-                                            context.currentProject && context.currentProject.author
-                                            && context.currentProject.author.avatarUrl ?
-                                            <img className="circle" src={context.currentProject.author.avatarUrl} />
-                                            :
-                                            <i className="material-icons circle">person</i>
+                                            project && project.author
+                                                && project.author.avatarUrl ?
+                                                <img className="circle" src={project.author.avatarUrl} />
+                                                :
+                                                <i className="material-icons circle">person</i>
                                         }
 
 
                                         <h4 className="avail"></h4>
-                                        <p><strong>Repo: </strong><a href="{{ repoUrl }}">repoURL</a></p>
-                                        <p><strong>Hosted: </strong><a href="{{ hostedUrl }}">hostedURL</a></p>
-                                        <p>body</p>
+                                        <p>
+                                            <strong>Repo: </strong>
+                                            <a href={project.repoUrl}>{project.repoUrl}</a>
+                                        </p>
+                                        <p>
+                                            <strong>Hosted: </strong>
+                                            <a href={project.repoUrl}>{project.hostedUrl}</a>
+                                        </p>
+                                        <p>{project.body}</p>
 
                                         <div className="center-align">
-                                            <button id="testThisBtn" className="btn btn-large">Test This</button>
+                                            <button 
+                                                id="testThisBtn" 
+                                                className="btn btn-large"
+                                                onClick={() => { this.redirect('/review') }}
+                                            >
+                                                Test This
+                                            </button>
                                         </div>
                                         <br />
                                         <br />
@@ -49,23 +63,30 @@ class ProjectDetail extends Component {
                                         <div className="row">
                                             <h5>Completed Tests</h5>
                                             <ul className="collapsible">
-                                                <li>
-                                                    <div className="collapsible-header">
-                                                        <div>
-                                                            <img className="circle" src="{{ this.dataValues.authorAvatarUrl }}" />
-                                                        </div>
-                                                        <div>
-                                                            Tester:
-                                                            <div>Score:</div>
-                                                        </div>
-                                                        <div>
-                                                            <i className="material-icons iconFB">flag</i>
-                                                        </div>
-                                                    </div>
-                                                    <div className="collapsible-body">
-                                                        <span></span>
-                                                    </div>
-                                                </li>
+                                                {
+                                                    project.tests.map((test) => {
+                                                        return (
+                                                            <li className="detailTest">
+                                                                <div className="collapsible-header">
+                                                                    <div>
+                                                                        <img className="circle" src={test.author.avatarUrl} />
+                                                                    </div>
+                                                                    <div>
+                                                                        <div>Tester: {test.author.displayName}</div>
+                                                                        <div>Score: {test.score} </div>
+                                                                    </div>
+
+                                                                    <i className="material-icons iconFB">flag</i>
+
+                                                                </div>
+                                                                <div className="collapsible-body">
+                                                                    <span></span>
+                                                                </div>
+                                                            </li>
+                                                        )
+                                                    })
+                                                }
+
                                             </ul>
                                         </div>
                                         <h5>Comments</h5>
