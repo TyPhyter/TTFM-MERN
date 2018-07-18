@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import AppContext from '../AppContext';
+import { withRouter } from 'react-router-dom';
 
 class Dashboard extends Component {
+
+    redirect = (path) => {
+        console.log('redirect', path)
+        this.props.history.push('/create');
+    }
 
     render() {
         return (
@@ -35,9 +41,9 @@ class Dashboard extends Component {
                                                             <a href={'projects' + project._id}>
                                                                 <i className="material-icons circle">person</i>
                                                                 <h5 className="truncate">{project.title}</h5>
-                                                                <a href="#!" className="secondary-content">
+                                                                <div href="#!" className="secondary-content">
                                                                     <i className="material-icons light-green-text accent-3">arrow_forward</i>
-                                                                </a>
+                                                                </div>
                                                             </a>
                                                         </li>
                                                     )
@@ -45,7 +51,7 @@ class Dashboard extends Component {
                                                 : //if not, show this
                                                 <div style={{textAlign: 'center', marginTop: '20px'}}>
                                                     <div>Looks like you haven't posted any projects yet!</div>
-                                                    <a className="btn btn-large" href="/create">Let's Fix That</a>
+                                                    <button className="btn btn-large" onClick={() => {this.redirect('/create')}}>Let's Fix That</button>
                                                 </div>
                                         }
                                     </ul>
@@ -57,9 +63,9 @@ class Dashboard extends Component {
                                             <a href="/projects/{{this.dataValues.id}}">
                                                 <i className="material-icons circle">person</i>
                                                 <h5 className="truncate">something</h5>
-                                                <a href="#!" className="secondary-content">
+                                                <div href="#!" className="secondary-content">
                                                     <i className="material-icons light-green-text accent-3">arrow_forward</i>
-                                                </a>
+                                                </div>
                                             </a>
                                         </li>
                                     </ul>
@@ -74,4 +80,4 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);
