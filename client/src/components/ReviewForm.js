@@ -134,7 +134,7 @@ class ReviewForm extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
                     )
                 }}
             </AppContext.Consumer> 
