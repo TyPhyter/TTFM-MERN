@@ -102,14 +102,27 @@ router.post('/users/github', (req, res, next) => {
                 user.save()
                     .then((updatedUser) => {
                         //TO DO: use a projection instead, eliminate the password field
-                        res.locals.user = updatedUser;
-                        res.locals.newToken = jwt.sign({
-                            //1hr from now
-                            exp: Math.floor(Date.now() / 1000) + (60 * 60),
-                            user: res.locals.user
-                        }, 'mysecret');
-                        console.log(updatedUser);
-                        next();
+                        db.User.findById(mongoose.Types.ObjectId(updatedUser._id))
+                            .populate({
+                                path: 'projects',
+                                populate: { path: 'author' }
+                            })
+                            .populate({
+                                path: 'tests',
+                                populate: { path: 'author' }
+                            })
+                            .then((user) => {
+                                res.locals.user = user;
+
+                                res.locals.newToken = jwt.sign({
+                                    //1hr from now
+                                    exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                                    user: res.locals.user
+                                }, 'mysecret');
+                                console.log(updatedUser);
+                                next();
+                            });
+                        
                     })
                     .catch((err) => {
                         res.status('400').send(err);
@@ -122,7 +135,7 @@ router.post('/users/github', (req, res, next) => {
                     .then((user) => {
 
                         //TO DO: use a projection instead, eliminate the password field
-                        res.locals.user = updatedUser;
+                        res.locals.user = user.populate('projects').populate('tests');
                         res.locals.newToken = jwt.sign({
                             //1hr from now
                             exp: Math.floor(Date.now() / 1000) + (60 * 60),

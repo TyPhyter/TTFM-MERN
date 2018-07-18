@@ -22,6 +22,17 @@ class Create extends Component {
         });
     }
 
+    redirect = (path, _id, context) => {
+        console.log('get project and redirect', path);
+        fetch(localUri + '/projects/' + _id)
+            .then(res => {
+                return res.json();
+            }).then(data => {
+                context.setCurrentProject(data[0]);
+                this.props.history.push(path);
+            });
+    }
+
     postProject = (evt, context) => {
         evt.preventDefault();
         fetch("http://localhost:3002/projects", {
@@ -41,8 +52,9 @@ class Create extends Component {
             .then(function (response) {
                 return response.json();
             })
-            .then(function (myJson) {
-                console.log(myJson);
+            .then((project) => {
+                console.log(project);
+                setTimeout(() => {this.redirect('/detail', project._id, context)}, 750);
             });
     }
 
@@ -102,7 +114,7 @@ class Create extends Component {
                                             <label htmlFor="bodyText">About your project</label>
                                         </div>
                                         <div className="input-field col s12 center-align">
-                                            <button className="btn btn-large" id="post" onClick={(e) => {e, this.postProject(context)}}>POST</button>
+                                            <button className="btn btn-large" id="post" onClick={(e) => {this.postProject(e, context)}}>POST</button>
                                             <a className="waves-effect waves-light btn btn-large modal-trigger" href="#repoPicker">Repo Picker</a>
                                         </div>
                                     </div>
