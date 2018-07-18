@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import AppContext from '../AppContext';
 import { withRouter } from 'react-router-dom';
 
+let localUri = 'http://localhost:3002';
+let productionUri = 'https://ttfm-api.herokuapp.com';
+
 class Create extends Component {
 
     state = {
@@ -17,6 +20,30 @@ class Create extends Component {
         this.setState({
             [name]: value
         });
+    }
+
+    postProject = () => {
+        fetch(localUri + '/tests',
+            {
+                method: "POST",
+                body: {
+                    title: req.body.title,
+                    body: req.body.body,
+                    score: req.body.score,
+                    authorDisplayName: req.body.authorDisplayName,
+                    authorGithubName: req.body.authorGithubName,
+                    authorAvatarUrl: req.body.authorAvatarUrl,
+                    ProjectId: req.body.ProjectId,
+                    UserId: req.body.UserId
+                }
+
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson);
+            });
     }
 
 
