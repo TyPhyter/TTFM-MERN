@@ -6,6 +6,8 @@ $(document).ready(function() {
     $(".collapsible").collapsible();
     // Initialize Mobile Nav - Sidebar
     $(".sidenav").sidenav();
+    // Initialize Modal
+    $('.modal').modal();
   });
   
   var myProjectsButton = document.querySelector('#myProjectsButton');
