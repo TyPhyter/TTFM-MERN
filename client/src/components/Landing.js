@@ -110,8 +110,18 @@ export default class Landing extends Component {
                             return response.json();
                         })
                         .then((json) => {
+
                             console.log(json);
                             context.updateUser(json.user);
+
+                            if(json.notifications) {
+                                context.setModalContent({
+                                    title: json.notifications[0].title,
+                                    message: json.notifications[0].message
+                                });
+                                context.toggleModal();
+                            }
+                            
                             context.logIn();
                         });
                 });
