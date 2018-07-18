@@ -72,7 +72,7 @@ class All extends Component {
                                                                     <i className="material-icons circle">person</i>
                                                             }
                                                             <h5 className="truncate">{project.title}</h5>
-                                                            <a href="{project.project}" className="secondary-content">
+                                                            <a href="#" className="secondary-content">
                                                                 <i className="material-icons light-green-text accent-3">arrow_forward</i>
                                                             </a>
                                                         </div>
@@ -82,7 +82,7 @@ class All extends Component {
                                         }
                                     </ul>
                                 </div>
-                                <div id="today" className="col s12">
+                                {/* <div id="today" className="col s12">
                                     <ul className="collection">
                                         <li className="collection-item avatar">
                                             <img src="./img/profile.jpg" alt="" className="circle" />
@@ -156,7 +156,7 @@ class All extends Component {
                                             </a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     )

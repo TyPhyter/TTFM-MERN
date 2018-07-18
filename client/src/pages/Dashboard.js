@@ -31,7 +31,7 @@ class Dashboard extends Component {
                                 </ul>
 
                                 <div id="current" className="col s12">
-                                    <ul className="collection">
+                                    <ul className="collection" style={{ textAlign: 'center'}}>
                                         {   //do we have any projects
                                             context.user.projects.length > 0 ?
                                                 //if yes, list them
@@ -54,10 +54,16 @@ class Dashboard extends Component {
                                                     <button className="btn btn-large" onClick={() => {this.redirect('/create')}}>Let's Fix That</button>
                                                 </div>
                                         }
+                                        {
+                                            context.user.projects.length > 0 ?
+                                            <button className="btn btn-large" style={{marginTop: '10px'}}onClick={() => {this.redirect('/create')}}>Post a Project</button>
+                                            :
+                                            null
+                                        }
                                     </ul>
                                 </div>
                                 {/* I'm not sure why this isn't showing up on the correct tab */}
-                                <div id="closed" className="col s12">
+                                {/* <div id="closed" className="col s12">
                                     <ul className="collection">
                                         <li className="collection-item avatar">
                                             <a href="/projects/{{this.dataValues.id}}">
@@ -71,7 +77,7 @@ class Dashboard extends Component {
                                     </ul>
                                     
                                     <div className="divider"></div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>)
                 }}
