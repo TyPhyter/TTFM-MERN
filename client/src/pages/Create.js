@@ -35,7 +35,7 @@ class Create extends Component {
 
     postProject = (evt, context) => {
         evt.preventDefault();
-        fetch("http://localhost:3002/projects", {
+        fetch(productionUri + '/projects', {
             headers: {
                 "Content-Type": "application/json"
             },

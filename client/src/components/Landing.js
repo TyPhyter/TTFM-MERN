@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import AppContext from '../AppContext';
 
+const OAuth = window.OAuth;
+const login = window.login;
 
 let localUri = 'http://localhost:3002';
 let productionUri = 'https://ttfm-api.herokuapp.com';
@@ -79,11 +81,8 @@ export default class Landing extends Component {
         console.log(context);
         evt.preventDefault();
 
-        const OAuth = window.OAuth;
-        const login = window.login;
-
-        window.OAuth.initialize('yjjLE5GugMvVBZz4Qb319CMVVbs');
-        window.OAuth.popup('github').then(github => {
+        OAuth.initialize('yjjLE5GugMvVBZz4Qb319CMVVbs');
+        OAuth.popup('github').then(github => {
             const githubToken = github;
             githubToken.me()
                 .then((user) => {

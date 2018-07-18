@@ -10,11 +10,11 @@ class ReviewForm extends Component {
     state = {
         textarea1: "",
         numValue: ""
-        
+
     }
 
     handleChange = event => {
-        this.setState ({
+        this.setState({
             numValue: event.target.value
         });
     }
@@ -35,7 +35,7 @@ class ReviewForm extends Component {
 
     postTest = (evt, context) => {
         evt.preventDefault();
-        fetch(productionUri + '/test', {
+        fetch(productionUri + '/tests', {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -62,8 +62,8 @@ class ReviewForm extends Component {
     render() {
         return (
             <AppContext.Consumer>
-                {context =>{
-                    return(
+                {context => {
+                    return (
                         <div>
                             <div className="container app-wrapper">
                                 <h2 id="projectName">Project Title</h2>
@@ -82,11 +82,11 @@ class ReviewForm extends Component {
                                                             <ul>
                                                                 <li className="col s4">
                                                                     <label>
-                                                                        <input 
+                                                                        <input
                                                                             className="with-gap"
-                                                                            type="radio" 
-                                                                            checked ={this.state.numValue === "5"}
-                                                                            value="5" 
+                                                                            type="radio"
+                                                                            checked={this.state.numValue === "5"}
+                                                                            value="5"
                                                                             onChange={this.handleChange}
                                                                         />
                                                                         <span>Everything worked!</span>
@@ -94,11 +94,11 @@ class ReviewForm extends Component {
                                                                 </li>
                                                                 <li className="col s4">
                                                                     <label>
-                                                                        <input 
-                                                                            className="with-gap" 
-                                                                            type="radio" 
-                                                                            value="3" 
-                                                                            checked ={this.state.numValue === "3"}
+                                                                        <input
+                                                                            className="with-gap"
+                                                                            type="radio"
+                                                                            value="3"
+                                                                            checked={this.state.numValue === "3"}
                                                                             onChange={this.handleChange}
                                                                         />
                                                                         <span>Looks good, but has a few issues.</span>
@@ -106,11 +106,11 @@ class ReviewForm extends Component {
                                                                 </li>
                                                                 <li className="col s4">
                                                                     <label>
-                                                                        <input 
-                                                                            className="with-gap" 
-                                                                            type="radio" 
-                                                                            value="1" 
-                                                                            checked ={this.state.numValue === "1"}
+                                                                        <input
+                                                                            className="with-gap"
+                                                                            type="radio"
+                                                                            value="1"
+                                                                            checked={this.state.numValue === "1"}
                                                                             onChange={this.handleChange}
                                                                         />
                                                                         <span>So broke, it eats sleep for dinner.</span>
@@ -120,27 +120,28 @@ class ReviewForm extends Component {
                                                         </div>
                                                         <div className="row">
                                                             <div className="input-field col s12">
-                                                                <textarea 
+                                                                <textarea
                                                                     id="textarea1" className="materialize-textarea"
-                                                                    value= {this.state.textarea1}
+                                                                    value={this.state.textarea1}
                                                                     name="textarea1"
                                                                     onChange={this.handleInputChange}
                                                                     type="text">
                                                                 </textarea>
                                                                 <label for="textarea1">Specific Feedback and Comments</label>
                                                             </div>
+                                                            <button onClick={(e)=>{this.postTest(e, context)}}>SUBMIT</button>
                                                         </div>
-                                                        </form>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
+                        </div>
                     )
                 }}
-            </AppContext.Consumer> 
+            </AppContext.Consumer>
         );
     }
 }
