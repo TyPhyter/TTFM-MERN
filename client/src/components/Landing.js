@@ -26,7 +26,7 @@ export default class Landing extends Component {
         let su_email = document.querySelector('#su_email').value.trim();
         let su_password = document.querySelector('#su_password').value.trim();
         let displayName = document.querySelector('#su_user_name').value.trim();
-        fetch(localUri + '/users', {
+        fetch(productionUri + '/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ export default class Landing extends Component {
         event.preventDefault();
         let li_email = document.querySelector('#li_user_name').value.trim();
         let li_password = document.querySelector('#li_password').value.trim();
-        fetch(localUri + '/users', {
+        fetch(productionUri + '/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ export default class Landing extends Component {
 
                     console.log(githubUser);
 
-                    fetch(localUri + '/users/github', {
+                    fetch(productionUri + '/users/github', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

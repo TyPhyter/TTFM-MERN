@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import AppContext from '../AppContext';
 import { withRouter } from 'react-router-dom';
 
+let localUri = 'http://localhost:3002';
+let productionUri = 'https://ttfm-api.herokuapp.com';
+
 class ReviewForm extends Component {
     // state
     state = {
@@ -32,7 +35,7 @@ class ReviewForm extends Component {
 
     postTest = (evt, context) => {
         evt.preventDefault();
-        fetch("http://localhost:3002/tests", {
+        fetch(productionUri + '/test', {
             headers: {
                 "Content-Type": "application/json"
             },

@@ -24,7 +24,7 @@ class Create extends Component {
 
     redirect = (path, _id, context) => {
         console.log('get project and redirect', path);
-        fetch(localUri + '/projects/' + _id)
+        fetch(productionUri + '/projects/' + _id)
             .then(res => {
                 return res.json();
             }).then(data => {
