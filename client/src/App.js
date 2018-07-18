@@ -42,7 +42,7 @@ class App extends Component {
     render() {
         return (
             <AppContext.Provider value={ this.state } >
-                <Router>
+                <Router basename={process.env.PUBLIC_URL}>
                     <div>
                         <Navbar />
                         <Switch>
@@ -50,12 +50,12 @@ class App extends Component {
                                 this.state.loggedIn ?
                                     <Route exact path="/" component={Dashboard} /> : <Route exact path="/" component={Home} />
                             }
-                            <Route exact path="/" component={Home} />
-                            <Route exact path="/all" component={All} />
-                            <Route exact path="/create" component={Create} />
+                            <Route exact path={`/`} component={Home} />
+                            <Route exact path={`/all`} component={All} />
+                            <Route exact path={`/create`} component={Create} />
                             {/* <Route exact path="/dashboard" component={Dashboard} /> */}
-                            <Route exact path="/detail" component={Detail} />
-                            <Route exact path="/review" component={Review} />
+                            <Route exact path={`/detail`} component={Detail} />
+                            <Route exact path={`/review`} component={Review} />
                         </Switch>
                         <Footer />
                         {

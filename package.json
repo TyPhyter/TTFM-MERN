@@ -9,11 +9,14 @@
     "cors": "^2.8.4",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "gh-pages": "^1.2.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.0",
     "oauthio-web": "^0.6.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "predeploy": "cd client/ && npm run build",
+    "deploy": "gh-pages -d client/build"
   }
 }
