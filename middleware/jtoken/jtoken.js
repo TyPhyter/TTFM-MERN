@@ -20,7 +20,7 @@ const jtoken = {
 
             console.log('jtoken');
 
-            const token = req.body.token || req.query.token;
+            const token = req.body.token || req.query.token || 'not.a.token';
             const result = this.verifyToken(token);
             console.log(result)
 

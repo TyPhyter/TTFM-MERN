@@ -16,7 +16,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/ttfm";
 mongoose
     .connect(MONGODB_URI, { useNewUrlParser: true })
     .then(() => {
-        console.log('Connected to db');
+        console.log('Connected to db @', MONGODB_URI);
     });
 
 const jtoken = require('./middleware/jtoken/jtoken');

@@ -18,8 +18,8 @@ import React, { Component } from 'react';
             <div id="current" className="col s12">
                 <ul className="collection">
                     <li className="collection-item avatar">
-                        <a href="/projects/{{this.dataValues.id}}">
-                            <img className="circle" src="{{ this.dataValues.authorAvatarUrl }}"/>
+                        <a href="#">
+                            <img className="circle" src=""/>
                             <i className="material-icons circle">person</i>
                             <h5 className="truncate"></h5>
                             {/* <a href="#!" className="secondary-content">
@@ -28,12 +28,12 @@ import React, { Component } from 'react';
                         </a>
                     </li>
                     <div >
-                        <a  className="btn btn-large" href="/projects/post/{{ id }}">Post a Project</a>
+                        <a  className="btn btn-large" href="/create">Post a Project</a>
                     </div>
                 
                     <div>
                         <div>Looks like you haven't posted any projects yet!</div>
-                        <a className="btn btn-large" href="/projects/post/{{ id }}">Let's Fix That</a>
+                        <a className="btn btn-large" href="/create">Let's Fix That</a>
                     </div>
                 </ul>
             </div>
