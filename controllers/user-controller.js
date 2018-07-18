@@ -8,35 +8,35 @@ const jwt = require('jsonwebtoken');
 //find user
 router.get('/users/:id?', (req, res) => {
 
-        if (req.params.id) {
+    if (req.params.id) {
 
-            const _id = req.params.id;
-            const o_id = mongoose.Types.ObjectId(_id);
-            //VALID
-            db.User.findById(o_id)
-                .then((user) => {
-                    res.send(user);
-                })
-                .catch((err) => {
-                    console.log('db.User.findById', err);
-                    res.status('400').send(err);
-                });
+        const _id = req.params.id;
+        const o_id = mongoose.Types.ObjectId(_id);
+        //VALID
+        db.User.findById(o_id)
+            .then((user) => {
+                res.send(user);
+            })
+            .catch((err) => {
+                console.log('db.User.findById', err);
+                res.status('400').send(err);
+            });
 
-        } else {
+    } else {
 
-            //VALID
-            db.User.find({})
-                .then((users) => {
-                    //TO DO
-                    //maybe require admin permissions for this, or just disable it
-                    //definitely don't send password hashes in production
-                    res.send(users);
-                })
-                .catch((err) => {
-                    console.log('db.User.findAll', err);
-                    res.status('400').send(err);
-                });
-        }
+        //VALID
+        db.User.find({})
+            .then((users) => {
+                //TO DO
+                //maybe require admin permissions for this, or just disable it
+                //definitely don't send password hashes in production
+                res.send(users);
+            })
+            .catch((err) => {
+                console.log('db.User.findAll', err);
+                res.status('400').send(err);
+            });
+    }
 });
 
 //create user
@@ -59,7 +59,7 @@ router.post('/users', (req, res, next) => {
                         .then((hash) => {
                             db.User.create({ email: email, passwordHash: hash, displayName: displayName, logins: [new Date()] })
                                 .then((updatedUser) => {
-                                    
+
                                     //TO DO: use a projection instead, eliminate the password field
                                     res.locals.user = updatedUser;
                                     res.locals.newToken = jwt.sign({
@@ -94,10 +94,11 @@ router.post('/users/github', (req, res, next) => {
     db.User.findOne({ githubID: githubID })
         .then((user) => {
             console.log(user);
-            console.log('user found, logging in');
+
             //if we match a record, then the id is already registered
             //log in, gen a new token, next()
             if (user !== null) {
+                console.log('user found, logging in');
                 let date = new Date();
                 user.logins.push(date);
                 user.save()
@@ -123,7 +124,7 @@ router.post('/users/github', (req, res, next) => {
                                 console.log(updatedUser);
                                 next();
                             });
-                        
+
                     })
                     .catch((err) => {
                         res.status('400').send(err);
@@ -136,15 +137,25 @@ router.post('/users/github', (req, res, next) => {
                     .then((user) => {
                         console.log('created user', user);
                         //TO DO: use a projection instead, eliminate the password field
-                        res.locals.user = user.populate('projects').populate('tests');
-                        res.locals.newToken = jwt.sign({
-                            //1hr from now
-                            exp: Math.floor(Date.now() / 1000) + (60 * 60),
-                            user: res.locals.user
-                        }, 'mysecret');
-                        console.log(updatedUser);
-                        next();
-
+                        db.User.findById(mongoose.Types.ObjectId(user._id))
+                            .populate({
+                                path: 'projects',
+                                populate: { path: 'author' }
+                            })
+                            .populate({
+                                path: 'tests',
+                                populate: { path: 'author' }
+                            })
+                            .then((user) => {
+                                res.locals.user = user;
+                                res.locals.newToken = jwt.sign({
+                                    //1hr from now
+                                    exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                                    user: res.locals.user
+                                }, 'mysecret');
+                                console.log(updatedUser);
+                                next();
+                            });
 
                     }).catch((err) => {
                         res.status('400').send(err);
