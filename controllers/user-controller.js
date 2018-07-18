@@ -97,7 +97,7 @@ router.post('/users/github', (req, res, next) => {
             console.log('user found, logging in');
             //if we match a record, then the id is already registered
             //log in, gen a new token, next()
-            if (user) {
+            if (user !== null) {
                 let date = new Date();
                 user.logins.push(date);
                 user.save()
