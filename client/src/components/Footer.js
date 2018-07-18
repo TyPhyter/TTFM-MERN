@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default () => {
   return (
@@ -7,7 +6,7 @@ export default () => {
     <div className="footer-copyright">
         <div className="container">
         Copyright &copy; {new Date().getFullYear()} TestThisFor.Me, All rights reserved. Tyler Jenkins, Grace Ho, Thomas Mosley, and Allan Jones
-            <Link className="grey-text text-lighten-4 right" to="https://github.com/TyPhyter/TestThisFor.Me" target="_blank">View Code</Link>
+            <a className="grey-text text-lighten-4 right" href="https://github.com/TyPhyter/ttfm-mern" target="_blank">View Code</a>
         </div>
     </div>
 </footer>
