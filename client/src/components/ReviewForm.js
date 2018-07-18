@@ -4,15 +4,19 @@ export default class ReviewForm extends Component {
     // state
     state = {
         textarea1: "",
+        numValue: ""
         
     }
 
-   
+    handleChange = event => {
+        this.setState ({
+            numValue: event.target.value
+        });
+    }
 
     handleInputChange = event => {
-        const target = event.target;
-        const value = target.type === 'radio' ? target.checked: target.value;
-        const name = target.name;
+        let value = event.target.value;
+        const name = event.target.name;
 
         this.setState({
             [name]: value
@@ -45,19 +49,37 @@ export default class ReviewForm extends Component {
                                     <ul>
                                         <li className="col s4">
                                             <label>
-                                                <input className="with-gap" name="group3" type="radio" value="5" />
+                                                <input 
+                                                    className="with-gap"
+                                                    type="radio" 
+                                                    checked ={this.state.numValue === "5"}
+                                                    value="5" 
+                                                    onChange={this.handleChange}
+                                                />
                                                 <span>Everything worked!</span>
                                             </label>
                                         </li>
                                         <li className="col s4">
                                             <label>
-                                                <input className="with-gap" name="group3" type="radio" value="3" />
+                                                <input 
+                                                    className="with-gap" 
+                                                    type="radio" 
+                                                    value="3" 
+                                                    checked ={this.state.numValue === "3"}
+                                                    onChange={this.handleChange}
+                                                />
                                                 <span>Looks good, but has a few issues.</span>
                                             </label>
                                         </li>
                                         <li className="col s4">
                                             <label>
-                                                <input className="with-gap" name="group3" type="radio" value="1" />
+                                                <input 
+                                                    className="with-gap" 
+                                                    type="radio" 
+                                                    value="1" 
+                                                    checked ={this.state.numValue === "1"}
+                                                    onChange={this.handleChange}
+                                                />
                                                 <span>So broke, it eats sleep for dinner.</span>
                                             </label>
                                         </li>
