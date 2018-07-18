@@ -153,7 +153,7 @@ router.post('/users/github', (req, res, next) => {
                                     exp: Math.floor(Date.now() / 1000) + (60 * 60),
                                     user: res.locals.user
                                 }, 'mysecret');
-                                console.log(updatedUser);
+                                console.log(user);
                                 next();
                             });
 

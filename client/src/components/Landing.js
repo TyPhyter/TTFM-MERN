@@ -124,7 +124,7 @@ export default class Landing extends Component {
                                 }
 
                                 context.logIn();
-                            }, 2000);
+                            }, 1000);
 
                         });
                 });
