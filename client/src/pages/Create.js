@@ -22,22 +22,22 @@ class Create extends Component {
         });
     }
 
-    postProject = () => {
-        fetch(localUri + '/tests',
-            {
-                method: "POST",
-                body: {
-                    title: req.body.title,
-                    body: req.body.body,
-                    score: req.body.score,
-                    authorDisplayName: req.body.authorDisplayName,
-                    authorGithubName: req.body.authorGithubName,
-                    authorAvatarUrl: req.body.authorAvatarUrl,
-                    ProjectId: req.body.ProjectId,
-                    UserId: req.body.UserId
-                }
-
+    postProject = (evt, context) => {
+        evt.preventDefault();
+        fetch("http://localhost:3002/projects", {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            mode: "cors",
+            method: "POST",
+            body: JSON.stringify({
+                title: this.state.title,
+                body: this.state.bodyText,
+                repoUrl: this.state.repoUrl,
+                hostedUrl: this.state.hostedUrl,
+                author: context.user._id,
             })
+        })
             .then(function (response) {
                 return response.json();
             })
@@ -102,7 +102,7 @@ class Create extends Component {
                                             <label htmlFor="bodyText">About your project</label>
                                         </div>
                                         <div className="input-field col s12 center-align">
-                                            <button className="btn btn-large" id="post">POST</button>
+                                            <button className="btn btn-large" id="post" onClick={(e) => {e, this.postProject(context)}}>POST</button>
                                             <a className="waves-effect waves-light btn btn-large modal-trigger" href="#repoPicker">Repo Picker</a>
                                         </div>
                                     </div>

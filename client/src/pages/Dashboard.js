@@ -6,7 +6,7 @@ class Dashboard extends Component {
 
     redirect = (path) => {
         console.log('redirect', path)
-        this.props.history.push('/create');
+        this.props.history.push(path);
     }
 
     render() {

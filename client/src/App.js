@@ -21,6 +21,7 @@ class App extends Component {
         token: '',
         loggedIn: false,
         showModal: false,
+        currentProject: {},
         logIn: () => {
             this.setState({ loggedIn: true });
         },
@@ -28,10 +29,13 @@ class App extends Component {
             this.setState({ loggedIn: false });
         },
         updateUser: (user) => {
-            this.setState({ user: user });
+            this.setState({ user });
         },
         toggleModal: () => {
             this.setState({ showModal: true });
+        },
+        setCurrentProject: (currentProject) => {
+            this.setState({ currentProject });
         }
     }
 
