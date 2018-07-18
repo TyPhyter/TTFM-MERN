@@ -16,13 +16,9 @@ import AppContext from "./AppContext";
 class App extends Component {
 
     state = {
-        user: null,
-        token: null,
-        loggedIn: false
-    }
-
-    contextObj = {
-        state: this.state,
+        user: {},
+        token: '',
+        loggedIn: false,
         logIn: () => {
             this.setState({ loggedIn: true });
         },
@@ -30,13 +26,13 @@ class App extends Component {
             this.setState({ loggedIn: false });
         },
         updateUser: (user) => {
-            this.setState({ user });
+            this.setState({ user: user });
         }
     }
 
     render() {
         return (
-            <AppContext.Provider value={ this.contextObj } >
+            <AppContext.Provider value={ this.state } >
                 <Router>
                     <div>
                         <Navbar />

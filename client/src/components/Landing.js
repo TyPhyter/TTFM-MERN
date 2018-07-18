@@ -106,10 +106,11 @@ export default class Landing extends Component {
                         .then((response) => {
                             //maybe save token here
                             console.log(response);
+                            return response.json();
                         })
                         .then((json) => {
                             console.log(json);
-                            context.updateUser(json);
+                            context.updateUser(json.user);
                             context.logIn();
                         });
                 });
