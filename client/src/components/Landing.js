@@ -116,11 +116,11 @@ export default class Landing extends Component {
                                 context.updateUser(json.user);
 
                                 if (json.notifications && json.notifications.length && json.notifications.length > 0) {
-                                    context.setModalContent({
-                                        name: json.notifications[0].name,
-                                        message: json.notifications[0].message
-                                    });
-                                    context.toggleModal();
+                                    // context.setModalContent({
+                                    //     name: json.notifications[0].name,
+                                    //     message: json.notifications[0].message
+                                    // });
+                                    // context.toggleModal();
                                 }
 
                                 context.logIn();

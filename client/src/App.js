@@ -36,6 +36,7 @@ class App extends Component {
             this.setState({ user });
         },
         toggleModal: () => {
+            console.log('toggle Modal');
             this.setState({ showModal: true });
         },
         setCurrentProject: (currentProject) => {
