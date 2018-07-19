@@ -118,7 +118,51 @@ router.get('/tests/user/:id', (req, res) => {
             console.log('db.Project.findById' + err);
             res.status('400').send(err);
         });
+    
+    //extension route
+    router.post('/extension', (req, res) => {
+        const _id = req.params.id;
+        console.log("test ext");
+        const o_id = mongoose.Types.ObjectId(_id);
+        let projectId;
 
-});
+        let test = {
+            title: req.body.title,
+            body: req.body.body,
+            score: req.body.score,
+            author: req.body.author//id
+        }
+
+
+        if (o_id) {
+            db.Projects.find({ hostedUrl: tabUrl })
+                .then(project => {
+                    if (project) {
+                        test.project = project._id;
+                        db.Test.create(test)
+                            .then((test) => {
+
+                                db.User.findById(user_o_id)
+                                    .then((user) => {
+                                        console.log("user", user);
+                                        user.tests.push(test._id);
+                                        user.save();
+
+                                        db.Project.findById(project_o_id)
+                                            .then((project) => {
+                                                console.log("project", project);
+                                                project.tests.push(test._id);
+                                                project.save();
+                                            });
+                                    });
+
+                                res.send(test);
+                            });
+                    }
+                });
+        }
+        
+    })
+})
 
 module.exports = router;
