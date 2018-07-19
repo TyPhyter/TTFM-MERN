@@ -22,6 +22,10 @@ class App extends Component {
         loggedIn: false,
         showModal: false,
         currentProject: {},
+        modalContent: {
+            title: '',
+            message: ''
+        },
         logIn: () => {
             this.setState({ loggedIn: true });
         },
@@ -32,10 +36,14 @@ class App extends Component {
             this.setState({ user });
         },
         toggleModal: () => {
+            console.log('toggle Modal');
             this.setState({ showModal: true });
         },
         setCurrentProject: (currentProject) => {
             this.setState({ currentProject });
+        },
+        setModalContent: (content) => {
+            this.setState({ modalContent: content })
         }
     }
 

@@ -20,10 +20,18 @@
             margin: auto;
             margin-bottom: 10px;
         }
+        
+        .btn {
+            display: inline-block;
+        }
+        
+        #confirm-check {
+            width: 33%;
+        }
     </style>
 </head>
 
-<body>
+<body id="body">
     <nav>
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">TestThisFor.Me</a>
@@ -48,7 +56,8 @@
             <input id="body" type="text" placeholder="Body" />
             <!-- <input type="file" /> -->
         </form>
-        <button id="btn" class="btn">CLICK ME</button>
+        <button id="ssBtn" class="btn">Take Screen Shot</button>
+        <button id="btn" class="btn">submit</button>
         <p id="paragraph">
             <img src="" style="visibility: hidden;" id="scrnshot" />
         </p>

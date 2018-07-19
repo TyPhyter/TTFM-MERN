@@ -31,13 +31,13 @@ class ProjectDetail extends Component {
                                         {
                                             project && project.author
                                                 && project.author.avatarUrl ?
-                                                <img className="circle" src={project.author.avatarUrl} />
+                                                <img id="projectAuthorImg" className="circle" src={project.author.avatarUrl} />
                                                 :
-                                                <i className="material-icons circle">person</i>
+                                                <i  id="projectAuthorImg" className="material-icons circle">person</i>
                                         }
 
 
-                                        <h4 className="avail"></h4>
+                                        <h4 className="avail">{project.title}</h4>
                                         <p>
                                             <strong>Repo: </strong>
                                             <a href={project.repoUrl}>{project.repoUrl}</a>
@@ -73,8 +73,8 @@ class ProjectDetail extends Component {
                                                                         <img className="circle" src={test.author.avatarUrl} />
                                                                     </div>
                                                                     <div>
-                                                                        <div>Tester: {test.author.displayName}</div>
-                                                                        <div>Score: {test.score} </div>
+                                                                        <div>Tester: {test.author.displayName || test.author.githubAlias}</div>
+                                                                        <div>Review: {test.body} </div>
                                                                     </div>
 
                                                                     <i className="material-icons iconFB">flag</i>

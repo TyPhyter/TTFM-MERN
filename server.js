@@ -19,8 +19,8 @@ mongoose
         console.log('Connected to db @', MONGODB_URI);
     });
 
-const jtoken = require('./middleware/jtoken/jtoken');
-app.use(jtoken.middleware());
+// const jtoken = require('./middleware/jtoken/jtoken');
+// app.use(jtoken.middleware());
 
 // const router = require('./routes/router');
 const userRouter = require('./controllers/user-controller');

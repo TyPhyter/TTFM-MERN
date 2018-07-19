@@ -231,10 +231,22 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
   top: 30px;
 }
 
+.detailTest img {
+  max-width: 45px;
+}
+
+#projectAuthorImg {
+  max-width: 250px;
+}
+
 @media screen and (max-width: 768px) {
   #modal1 {
     height: 40vh;
     top: 20vh;
     width: 90vw;
   }
+}
+
+strong {
+  font-weight: bold;
 }
